@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "扫雷", "扫雷\扫雷.vcxproj", "{AF020A50-45BD-4844-831A-ED07C8B3A4C6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF020A50-45BD-4844-831A-ED07C8B3A4C6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AF020A50-45BD-4844-831A-ED07C8B3A4C6}.Debug|Win32.Build.0 = Debug|Win32
+		{AF020A50-45BD-4844-831A-ED07C8B3A4C6}.Release|Win32.ActiveCfg = Release|Win32
+		{AF020A50-45BD-4844-831A-ED07C8B3A4C6}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
