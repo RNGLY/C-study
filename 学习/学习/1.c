@@ -50,6 +50,65 @@
 //	return 0;
 //}
 
+////使用qsort对任何数组进行排序：
+//#include<stdlib.h>
+//#include<string.h>
+//typedef struct Student
+//{
+//	char name[20];
+//	int age;
+//	double high;
+//}Stu;
+//int cmp_name(const void* e1,const void* e2)
+//{
+//	return strcmp(((Stu*)e1)->name,((Stu*)e2)->name);
+//}
+//void test1()
+//{
+//	Stu s[3]={{"c",13,1.5},{"b",30,1.75},{"a",20,1.80}};
+//	int sz=sizeof(s)/sizeof(s[0]);
+//	qsort(s,sz,sizeof(s[0]),cmp_name);
+//	printf("名字：\n");
+//	printf("%s %d %lf\n",s[0].name,s[0].age,s[0].high);
+//	printf("%s %d %lf\n",s[1].name,s[1].age,s[1].high);
+//	printf("%s %d %lf\n",s[2].name,s[2].age,s[2].high);
+//}
+//int cmp_age(const void* e1,const void* e2)
+//{
+//	return ((Stu*)e1)->age-((Stu*)e2)->age;
+//}
+//void test2()
+//{
+//	Stu s[3]={{"c",13,1.5},{"b",30,1.75},{"a",20,1.80}};
+//	int sz=sizeof(s)/sizeof(s[0]);
+//	qsort(s,sz,sizeof(s[0]),cmp_age);
+//	printf("年龄：\n");
+//	printf("%s %d %lf\n",s[0].name,s[0].age,s[0].high);
+//	printf("%s %d %lf\n",s[1].name,s[1].age,s[1].high);
+//	printf("%s %d %lf\n",s[2].name,s[2].age,s[2].high);
+//}
+//int cmp_high(const void* e1,const void* e2)
+//{
+//	return (int)(((Stu*)e1)->high-((Stu*)e2)->high);//强制类型转换（也可以用if else语句判断返回1，0，-1）
+//}
+//void test3()
+//{
+//	Stu s[3]={{"c",13,1.5},{"b",30,1.75},{"a",20,1.80}};
+//	int sz=sizeof(s)/sizeof(s[0]);
+//	qsort(s,sz,sizeof(s[0]),cmp_high);
+//	printf("身高：\n");
+//	printf("%s %d %lf\n",s[0].name,s[0].age,s[0].high);
+//	printf("%s %d %lf\n",s[1].name,s[1].age,s[1].high);
+//	printf("%s %d %lf\n",s[2].name,s[2].age,s[2].high);
+//}
+//int main()
+//{
+//	test1();
+//	test2();
+//	test3();
+//	return 0;
+//}
+
 ////函数实现计算器（转移表版）：
 //void menu()
 //{
