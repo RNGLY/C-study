@@ -2,6 +2,70 @@
 
 #include<stdio.h>
 
+////打印用户输入为上半部分（避免用户输入偶数）行数的菱形：
+//int main()
+//{
+//	int line = 0;
+//	int i = 0;
+//	printf("请输入菱形上半部分行数n=");
+//	scanf("%d",&line);
+//	for (i = 0; i < line; i++)//打印上半部分
+//	{
+//		int j = 0;
+//		for (j = 0; j < line - 1 - i;j++)//打印空格
+//		{
+//			printf(" ");
+//		}
+//		for (j = 0; j < 2*i + 1; j++)//打印星号
+//		{
+//			printf("*");
+//		}
+//		printf("\n");
+//	}
+//	for (i = 0; i < line - 1;i++)//打印下半部分
+//	{
+//		int j = 0;
+//		for (j = 0; j <= i; j++)//打印空格
+//		{
+//			printf(" ");
+//		}
+//		for (j = 0; j < 2 * (line - 1 - i) - 1; j++)//打印星号
+//		{
+//			printf("*");
+//		}
+//		printf("\n");
+//	}
+//	return 0;
+//}
+
+////输出0到100000的自幂数(优化版)：
+//#include<math.h>
+//int main()
+//{
+//	int i = 0;
+//	for (i = 0; i < 100000;i++)
+//	{
+//		int n = 1;
+//		int tmp = i;
+//		int sum = 0;
+//		while (tmp /= 10)//计算i的位数n（不能直接用i，否则会导致死循环）
+//		{
+//			n++;
+//		}
+//		tmp = i;
+//		while (tmp)//计算i的每一位的n次方之和（sum）
+//		{
+//			sum += (int)pow(tmp % 10, n);//pow求平方的库函数（头文件math.h）(返回类型double类型)
+//			tmp /= 10;
+//		}
+//		if (i == sum)
+//		{
+//			printf("%d ",i);
+//		}
+//	}
+//	return 0;
+//}
+
 ////函数实现输出0到100000的水仙花数
 //int Sxh(int x,int n)
 //{
@@ -47,6 +111,128 @@
 //			printf("%d ",x);
 //		}
 //	}
+//	return 0;
+//}
+
+////函数实现m+mm+mmm+...（有n项）：
+//int Sum(int m,int n)
+//{
+//	int i = 0;
+//	int ret = 0;
+//	int sum = 0;
+//	for (i = 0; i < n; i++)
+//	{
+//		ret = ret*10 + m;
+//		sum += ret;
+//	}
+//	return sum;
+//}
+//int main()
+//{
+//	int m = 0;
+//	int n = 0;
+//	printf("请输入数m：");
+//	scanf("%d",&m);
+//	printf("请输入项数n：");
+//	scanf("%d",&n);
+//	printf("%d\n",Sum(m,n));
+//	return 0;
+//}
+
+////函数实现字符数组逆序：
+//#include<assert.h>
+//#include<string.h>
+//void Reverse(char* arr)
+//{
+//	assert(arr);
+//	int lenth = strlen(arr);
+//	char* left = arr;
+//	char* right = arr + lenth - 1;
+//	while (left < right)
+//	{
+//		char tmp = *left;
+//		*left = *right;
+//		*right = tmp;
+//		left++;
+//		right--;
+//	}
+//}
+//int main()
+//{
+//	char arr[500] = {0};
+//	printf("请输入一组字符串：");
+//	//scanf("%s",arr);//读取到‘\0’或者空格或者0停止
+//	gets(arr);//读取一行
+//	Reverse(arr);
+//	printf("逆序后为：%s\n",arr);
+//	return 0;
+//}
+
+////函数实现能冒泡排序任何类型的数组：
+//#include<string.h>
+//int cmp_int(const void* e1, const void* e2)//使用者自己根据数组比较条件设计的比较函数
+//{
+//	return  *(int*)e1 - *(int*)e2;
+//}
+//int cmp_char(const void* e1,const void* e2)
+//{
+//	return strcmp((char*) e1,(char*) e2);
+//}
+//void Jh(char* jh1, char* jh2, int width)
+//{
+//	int i = 0;
+//	for (i = 0; i<width; i++)//width标识一个字节一个字节进行交换，直到跟数组的一个元素字节相同
+//	{
+//		char tmp = *jh1;
+//		*jh1 = *jh2;
+//		*jh2 = tmp;
+//		jh1++;
+//		jh2++;
+//	}
+//}
+//void Mppx(void* base, int num, int width, int(*cmp)(const void* e1, const void* e2))//冒泡排序函数
+//{
+//	int i = 0;
+//	for (i = 0; i<num; i++)//趟数
+//	{
+//		int j = 0;
+//		for (j = 0; j<num - 1 - i; j++)//一趟交换对数
+//		{
+//			if (cmp((char*)base + j*width, (char*)base + (j + 1)*width)>0)
+//			{
+//				Jh((char*)base + j*width, (char*)base + (j + 1)*width, width);//交换函数
+//			}
+//		}
+//	}
+//}
+//void test1()
+//{
+//	int arr[] = { 9,8,7,6,5,4,3,2,1,0 };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	int i = 0;
+//	Mppx(arr, sz, sizeof(arr[0]), cmp_int);
+//	for(i=0;i<sz;i++)
+//	{
+//	printf("%d ",arr[i]);
+//	}
+//	printf("\n");
+//}
+//void test2()
+//{
+//	char arr[] = {'c','f','d','a','e','b'};
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	int i = 0;
+//	Mppx(arr, sz, sizeof(arr[0]), cmp_char);
+//	for (i = 0; i<sz; i++)
+//	{
+//		printf("%c ", arr[i]);
+//	}
+//	printf("\n");
+//}
+//int main()
+//{
+//	test1();
+//	test2();
 //	return 0;
 //}
 
