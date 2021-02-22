@@ -2,6 +2,352 @@
 
 #include<stdio.h>
 
+////在杨氏矩阵中查找某个数是否存在（要求时间复杂度小于O（N））：
+//int Finenum(int arr[3][3],int n,int* row,int* col)
+//{
+//	int x = 0;
+//	int y = *col - 1;//选取右上角的数为参照数
+//	while ((x <= (*row - 1)) && y >= 0)
+//	{
+//		if (arr[x][y] > n)//减去右边的第一列
+//		{
+//			y--;
+//		}
+//		else if (arr[x][y] < n)//减去第一行
+//		{
+//			x++;
+//		}
+//		else//找到了
+//		{
+//			*row = x;
+//			*col = y;
+//			return 1;
+//		}
+//	}
+//	return 0;//没找到
+//}
+//int main()
+//{
+//	int arr[3][3] = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } }; //（初始化杨氏矩阵）
+//	int n = 0;
+//	int x = 3;
+//	int y = 3;
+//	int ret = 0;
+//	printf("请输入想查找的数n=");
+//	scanf("%d", &n);
+//	ret = Finenum(arr, n, &x, &y);
+//	if (ret == 1)
+//	{
+//		printf("%d找到了,在第%d行第%d列\n", n, x + 1, y + 1);
+//	}
+//	else
+//	{
+//		printf("找不到\n");
+//	}
+//	return 0;
+//}
+
+////函数实现判断一个字符串是否能够通过选择得到另一个字符串（追加法）：
+//#include<assert.h>
+//#include<string.h>
+//int Is_left_move(char* arr1, char* arr2)
+//{
+//	assert(arr1 != NULL);
+//	assert(arr2 != NULL);
+//	int lenth1 = strlen(arr1);
+//	int lenth2 = strlen(arr2);
+//	if (lenth1 != lenth2)//判断字符串个数是否相等，防止不等时也能找到子串
+//	{
+//		return 0;
+//	}
+//	strncat(arr1, arr1, lenth1);//追加字符串的库函数strncat（不能用strcat,因为追加自己找不到\0）
+//	char* ret=strstr(arr1, arr2);//判断arr2是不是arr1子串的库函数strstr
+//	if (ret == NULL)
+//	{
+//		return 0;
+//	}
+//	else
+//	{
+//		return 1;
+//	}
+//}
+//int main()
+//{
+//	char arr1[20] = "abcdef";
+//	char arr2[] = "efab";
+//	int ret = 0;
+//	ret=Is_left_move(arr1, arr2);
+//	if (ret == 1)
+//	{
+//		printf("是左旋得来的\n");
+//	}
+//	else
+//	{
+//		printf("不是左旋转得来的\n");
+//	}
+//	return 0;
+//}
+
+////函数实现判断一个字符串是否能够通过选择得到另一个字符串（穷举法，效率低）：
+//#include<assert.h>
+//#include<string.h>
+//void Reverse(char* left, char* right)//逆序字符串函数
+//{
+//	assert(left != NULL);
+//	assert(right != NULL);
+//	while (left < right)
+//	{
+//		char tmp = *left;
+//		*left = *right;
+//		*right = tmp;
+//		left++;
+//		right--;
+//	}
+//}
+//void Left_move(char* arr,int k)
+//{
+//	assert(arr != NULL);
+//	int lenth = strlen(arr);
+//	assert(k <= lenth);
+//	Reverse(arr, arr + k - 1);//逆序左边
+//	Reverse(arr + k, arr + lenth - 1);//逆序右边
+//	Reverse(arr, arr + lenth - 1);//逆序整体
+//}
+//int Is_left_move(char* arr1, char* arr2)
+//{
+//	assert(arr1 != NULL);
+//	assert(arr2 != NULL);
+//	int lenth = strlen(arr1);
+//	int i = 0;
+//	for (i = 0; i < lenth; i++)
+//	{
+//		Left_move(arr1, 1);//每次将第一个字符串左旋一个字符再与第二个字符串进行比较
+//		int ret = strcmp(arr1, arr2);
+//		if (ret == 0)
+//		{
+//			return 1;
+//		}
+//	}
+//	return 0;
+//}
+//int main()
+//{
+//	char arr1[] = "abcdef";
+//	char arr2[] = "efabcd";
+//	int ret=Is_left_move(arr1, arr2);
+//	if (ret == 1)
+//	{
+//		printf("是左旋得来的\n");
+//	}
+//	else
+//	{
+//		printf("不是左旋转得来的\n");
+//	}
+//	return 0;
+//}
+
+////函数实现左旋字符串中的k个字符（三步翻转法）：
+//#include<assert.h>
+//#include<string.h>
+//void Reverse(char* left, char* right)//逆序字符串函数
+//{
+//	assert(left != NULL);
+//	assert(right != NULL);
+//	while (left < right)
+//	{
+//		char tmp = *left;
+//		*left = *right;
+//		*right = tmp;
+//		left++;
+//		right--;
+//	}
+//}
+//void Left_move(char* arr,int k)
+//{
+//	assert(arr != NULL);
+//	int lenth = strlen(arr);
+//	assert(k <= lenth);
+//	Reverse(arr, arr + k - 1);//逆序左边
+//	Reverse(arr + k, arr + lenth - 1);//逆序右边
+//	Reverse(arr, arr + lenth - 1);//逆序整体
+//}
+//int main()
+//{
+//	char arr[] = "abcdef";
+//	int k = 0;
+//	printf("请输入旋转字符个数k=");
+//	scanf("%d",&k);
+//	Left_move(arr, k);
+//	printf("%s\n", arr);
+//	return 0;
+//}
+
+////函数实现左旋字符串中的k个字符（暴力求解法）：
+//#include<assert.h>
+//#include<string.h>
+//void Left_move(char* arr,int k)
+//{
+//	assert(arr != NULL);
+//	int i = 0;
+//	int lenth = strlen(arr);
+//	for (i = 0; i < k; i++)//左旋k次
+//	{
+//		char tmp = *arr;//取出第一个字符
+//		int j = 0;
+//		for (j = 0; j < lenth - 1; j++)//后面的字符与前一个字符交换
+//		{
+//			*(arr + j) = *(arr + j + 1);
+//		}
+//		*(arr + lenth - 1) = tmp;
+//	}
+//}
+//int main()
+//{
+//	char arr[] = "abcdef";
+//	int k = 0;
+//	printf("请输入旋转字符个数k=");
+//	scanf("%d",&k);
+//	Left_move(arr, k);
+//	printf("%s\n", arr);
+//	return 0;
+//}
+
+////以下是4个嫌疑犯的供词：
+////A说：不是我。
+////B说：是C。
+////C说：是D。
+////D说：C在胡说。
+////已知3个人说了真话，凶手说了假话。
+////根据这些信息写一个程序判断谁是凶手：
+//int main()
+//{
+//	char killer = '0';
+//	for (killer = 'A'; killer < 'D'; killer++)
+//	{
+//		if (((killer != 'A') + (killer == 'C') + (killer == 'D') + (killer != 'D')) == 3)
+//			printf("凶手是%c\n", killer);
+//	}
+//	return 0;
+//}
+
+////打印10行杨辉三角（不打印空格）：
+//int main()
+//{
+//	int arr[10][10] = { 0 };
+//	int i = 0;
+//	int j = 0;
+//	for (i = 0; i < 10; i++)//改变数组元素
+//	{
+//		for (j = 0; j < 10; j++)
+//		{
+//			if (j == 0)
+//			{
+//				arr[i][j] = 1;//第一列数组元素改为1
+//			}
+//			if (i == j)
+//			{
+//				arr[i][j] = 1;//对角线数组元素改为1
+//			}
+//			if (i >= 2 && j >= 1)
+//			{
+//				arr[i][j] = arr[i - 1][j] + arr[i-1][j-1];//行数大于第三行，列数大于第二列的数组元素改为前一行同一列的元素加上前一行前一列的元素
+//			}
+//		}
+//	}
+//	for (i = 0; i < 10; i++)
+//	{
+//		for (j = 0; j <= i; j++)//j小于i才能打印下三角的元素
+//		{
+//			printf("%-3d ", arr[i][j]);
+//		}
+//		printf("\n");
+//	}
+//	return 0;
+//}
+
+////函数实现交换一个整型数组，使得所有奇数在前，所有偶数在后：
+//void Move(int arr[],int sz)
+//{
+//	int left = 0;
+//	int right = sz - 1;
+//	while (left < right)//所有的（left < right）都是为了防止越界访问
+//	{
+//		while ((left < right) && (arr[left] % 2 == 1))//在左边找一个偶数
+//		{
+//			left++;//如果找到的是奇数，就判断下一个数
+//		}
+//		while ((left < right) && (arr[right] % 2 == 0))
+//		{
+//			right--;//如果找到的是偶数，就判断前一个数
+//		}
+//		if (left < right)//找完后如果left<right就交换
+//		{
+//			int tmp = arr[left];
+//			arr[left] = arr[right];
+//			arr[right] = tmp;
+//		}
+//	}
+//}
+//void Print(int arr[],int sz)
+//{
+//	int i = 0;
+//	for (i = 0; i < sz; i++)
+//	{
+//		printf("%d ", arr[i]);
+//	}
+//	printf("\n");
+//}
+//int main()
+//{
+//	int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	Move(arr,sz);//交换函数
+//	Print(arr,sz);//打印函数，用于测试
+//	return 0;
+//}
+
+////函数实现喝汽水问题求解（一瓶汽水一元，两个空瓶可以换一瓶汽水）：
+//int Hqs(int money)
+//{
+//	int sum = money;
+//	int kp = money;//空瓶
+//	while (kp >= 2)
+//	{
+//		sum += (kp / 2);
+//		kp = (kp / 2) + (kp % 2);
+//	}
+//	return sum;
+//}
+//int main()
+//{
+//	int money = 0;
+//	int sum = 0;
+//	printf("请输入给的钱money=");
+//	scanf("%d",&money);
+//    sum = Hqs(money);
+//	printf("一共可以喝%d瓶汽水\n",sum);
+//	return 0;
+//}
+
+////经济学角度求解喝汽水问题（一瓶汽水一元，两个空瓶可以换一瓶汽水）：
+//int main()
+//{
+//	int money = 0;
+//	int sum = 0;
+//	printf("请输入给的钱money=");
+//	scanf("%d",&money);
+//	if (0 == money)//排除money为0的情况
+//	{
+//		sum = 0;
+//	}
+//	else
+//	{
+//		sum = 2 * money - 1;//相当于一瓶水0.5元，最后手里剩一个空瓶
+//	}
+//	printf("一共可以喝%d瓶汽水\n",sum);
+//	return 0;
+//}
+
 ////打印用户输入为上半部分（避免用户输入偶数）行数的菱形：
 //int main()
 //{
@@ -919,6 +1265,174 @@
 //	scanf("%d",&n);
 //	sum=Fbnq(n);
 //	printf("第%d个斐波那契数=%d\n",n,sum);
+//	return 0;
+//}
+
+////函数实现memmove函数(满分版)：
+//#include<assert.h>
+//void* my_memmove(void* dest,const void* src,size_t sz)//size_t表示无符号的整形
+//{
+//	 
+//}
+//int main()
+//{
+//	int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+//	int i = 0;
+//	my_memmove(arr + 2, arr, 5 * sizeof(arr[0]));//把1，2，3，4，5拷贝到3，4，5，6，7的位置上
+//	for (i = 0; i < sizeof(arr); i++)
+//	{
+//		printf("%d ", arr[i]);
+//	}
+//	return 0;
+//}
+
+////函数实现memcpy函数(满分版)：
+//#include<assert.h>
+//typedef struct Student
+//{
+//	char name[20];
+//	int age;
+//}Stu;
+//void* my_memcpy(void* dest,const void* src,size_t sz)
+//{
+//	assert(dest != NULL);
+//	assert(src != NULL);
+//	char* ret = (char*)dest;
+//	while (sz--)
+//	{
+//		*(char*)dest = *(char*)src;
+//		++(char*)dest;
+//		++(char*)src;
+//	}
+//	return ret;
+//}
+//int main()
+//{
+//	Stu s1[3] = {0};
+//	Stu s2[] = { { "张三",20 }, { "李四", 30 } };
+//	my_memcpy(s1, s2, sizeof(s2));
+//	//printf("%s %d\n", s1[0].name, s1[0].age);//用于测试
+//	//printf("%s %d\n", s1[1].name, s1[1].age);//用于测试
+//	return 0;
+//}
+
+////函数实现strstr函数(满分版)：
+//#include<assert.h>
+//char* my_strstr(const char* p1,const char* p2)
+//{
+//	assert(p1 != NULL);
+//	assert(p2 != NULL);
+//	char* s1 = NULL;
+//	char* s2 = NULL;
+//	char* jl = (char*)p1;//char*类型的记录指针，避免查找失败时改变p1和p2指针
+//	if (*p2 == '\0')//p2指向的字符串如果为空字符串，返回p1
+//	{
+//		return (char*)p1;
+//	}
+//	while (*jl)
+//	{
+//		s1 = jl;
+//		s2 = (char*)p2;
+//		while ((*s1 != '\0') && (*s2 != '\0') && (*s1 == *s2))
+//		{
+//			s1++;
+//			s2++;
+//		}
+//		if (*s2 == '\0')
+//		{
+//			return jl;//找到子串
+//		}
+//		if (*s1 == '\0')//库函数strstr没有，但是加上指针s1是否为空可以提高效率
+//		{
+//			return NULL;
+//		}
+//		jl++;
+//	}
+//	return NULL;//子串不存在
+//}
+//int main()
+//{
+//	char* p1 = "abbbcdef";
+//	char* p2 = "bbc";
+//	int ret = my_strstr(p1,p2);
+//	if (ret == NULL)
+//	{
+//		printf("子串不存在\n");
+//	}
+//	else
+//	{
+//		printf("%s\n",ret);
+//	}
+//	return 0;
+//}
+
+////函数实现strcmp函数(满分版)：
+//#include<assert.h>
+//int my_strcmp(const char* p1,const char* p2)
+//{
+//	assert(p1 != NULL);
+//	assert(p2 != NULL);
+//	while (*p1 == *p2)
+//	{
+//		if (*p1 == '\0')//相等
+//		{
+//			return 0;
+//		}
+//		p1++;
+//		p2++;
+//	}
+//	if (*p1 > *p2)//大于
+//	{
+//		return 1;
+//	}
+//	else//小于
+//	{
+//		return -1;
+//	}
+//}
+//int main()
+//{
+//	char* p1 = "abcdef";
+//	char* p2 = "qwerdf";
+//	int ret = 0;
+//	ret = my_strcmp(p1,p2);
+//	if (ret > 0)
+//	{
+//		printf("p1>p2\n");
+//	}
+//	else if(ret < 0)
+//	{
+//		printf("p1<p2\n");
+//	}
+//	else
+//	{
+//		printf("p1=p2\n");
+//	}
+//	return 0;
+//}
+
+////函数实现strcat函数(满分版)：
+//#include<assert.h>
+//char* my_strcat(char* dest,const char* src)//const表示src时常变量，不可被修改
+//{
+//	char* ret = dest;
+//	assert(dest != NULL);
+//	assert(src /*!= NULL*/);//src为空指针时值为0，故（!=NULL）可以省略
+//	while (*dest != '\0')//找到目的字符数组的拷贝位置
+//	{
+//		dest++;
+//	}
+//	while ((*dest++) = (*src++))
+//	{
+//	}
+//	return ret;
+//}
+//int main()
+//{
+//	char arr1[30] = "God is ";//目的字符数组arr1必须包含\0，确定从那开始拷贝
+//	char arr2[] = "me!!!";//源头字符数组arr2必须包含\0，确定拷贝到哪结束
+//	my_strcat(arr1, arr2);
+//	printf("%s\n", arr1);
 //	return 0;
 //}
 
