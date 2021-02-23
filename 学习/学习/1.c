@@ -2,6 +2,51 @@
 
 #include<stdio.h>
 
+////函数实现利用联合体检测当前机器的字节序存储模式：
+//int check_sys()
+//{
+//	union MyUnion//联合体成员变量在内存中的起始地址相同（成员变量不能同时使用）
+//	{
+//		char c;
+//		int i;
+//	}u;//直接创建一个联合体变量u
+//	u.i = 1;
+//	return u.c;//返回1代表小端，返回0代表大端
+//}
+//int main()
+//{
+//	int ret = check_sys();
+//	if (1 == ret)
+//	{
+//		printf("当前机器是小端字节序存储模式\n");
+//	}
+//	else
+//	{
+//		printf("当前机器是大端字节序存储模式\n");
+//	}
+//	return 0;
+//}
+
+////函数实现检测当前机器的字节序存储模式：
+//int check_sys()
+//{
+//	int a = 1;//1=0x00000001
+//	return *(char*)&a;//返回1代表小端，返回0代表大端
+//}
+//int main()
+//{
+//	int ret = check_sys();
+//	if (1 == ret)
+//	{
+//		printf("当前机器是小端字节序存储模式\n");
+//	}
+//	else
+//	{
+//		printf("当前机器是大端字节序存储模式\n");
+//	}
+//	return 0;
+//}
+
 ////在杨氏矩阵中查找某个数是否存在（要求时间复杂度小于O（N））：
 //int Finenum(int arr[3][3],int n,int* row,int* col)
 //{
@@ -1270,16 +1315,35 @@
 
 ////函数实现memmove函数(满分版)：
 //#include<assert.h>
-//void* my_memmove(void* dest,const void* src,size_t sz)//size_t表示无符号的整形
+//void* my_memmove(void* dest,const void* src,size_t sz)//size_t表示无符号的整形（用来记录拷贝多少个字节）
 //{
-//	 
+//	assert(dest != NULL);
+//	assert(src != NULL);
+//	void* ret = dest;
+//	if (dest < src)//src的地址大于dest的地址，从前向后拷贝
+//	{
+//		while (sz--)
+//		{
+//			*(char*)dest = *(char*)src;
+//			++(char*)dest;
+//			++(char*)src;
+//		}
+//	}
+//	else//src的地址小于dest的地址，从后向前拷贝
+//	{
+//		while (sz--)
+//		{
+//			*((char*)dest + sz) = *((char*)src + sz);
+//		}
+//	}
+//	return ret;
 //}
 //int main()
 //{
 //	int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 //	int i = 0;
 //	my_memmove(arr + 2, arr, 5 * sizeof(arr[0]));//把1，2，3，4，5拷贝到3，4，5，6，7的位置上
-//	for (i = 0; i < sizeof(arr); i++)
+//	for (i = 0; i < sizeof(arr)/sizeof(arr[0]); i++)
 //	{
 //		printf("%d ", arr[i]);
 //	}
