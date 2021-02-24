@@ -1,32 +1,33 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 
-#include"É¨À×.h"
+#include"æ‰«é›·.h"
 
-void Initboard(char board[Rows][Cols],int rows,int cols,char set)//µØÍ¼³õÊ¼»¯º¯Êı
+void Initboard(char board[Rows][Cols],int rows,int cols,char set)//åœ°å›¾åˆå§‹åŒ–å‡½æ•°
 {
 	int i=0;
 	int j=0;
-	for(i=0;i<rows;i++)//ĞĞ
+	for(i=0;i<rows;i++)//è¡Œ
 	{
-		for(j=0;j<cols;j++)//ÁĞ
+		for(j=0;j<cols;j++)//åˆ—
 		{
 			board[i][j]=set;
 		}
 	}
 }
 
-void Displayboard(char board[Rows][Cols],int row,int col)//µØÍ¼´òÓ¡º¯Êı
+void Displayboard(char board[Rows][Cols],int row,int col)//åœ°å›¾æ‰“å°å‡½æ•°
 {
+	system("cls");
 	int i=0;
 	int j=0;
-	for(i=0;i<=row;i++)//´òÓ¡ÁĞºÅ
+	for(i=0;i<=row;i++)//æ‰“å°åˆ—å·
 	{
 		printf("%d ",i);
 	}
 	printf("\n");
 	for(i=1;i<=row;i++)
 	{
-		printf("%d ",i);//´òÓ¡ĞĞºÅ
+		printf("%d ",i);//æ‰“å°è¡Œå·
 		for(j=1;j<=col;j++)
 		{
 			printf("%c ",board[i][j]);
@@ -35,22 +36,22 @@ void Displayboard(char board[Rows][Cols],int row,int col)//µØÍ¼´òÓ¡º¯Êı
 	}
 }
 
-void Setmine(char board[Rows][Cols],int row,int col)//²¼ÖÃÀ×º¯Êı
+void Setmine(char board[Rows][Cols],int row,int col)//å¸ƒç½®é›·å‡½æ•°
 {
-	int count=Lei_count;//À×µÄ¸öÊı
+	int count=Lei_count;//é›·çš„ä¸ªæ•°
 	while(count)
 	{
 		int x=rand()%row+1;
 		int y=rand()%col+1;
 		if(board[x][y]=='0')
 		{
-			board[x][y]='1';//²¼ÖÃÀ×
+			board[x][y]='1';//å¸ƒç½®é›·
 			count--;
 		}
 	}
 }
 
-int get_mine(char mine[Rows][Cols],int x,int y)//£¨×Ö·û¡®3¡¯-×Ö·û¡®0¡¯=Êı×Ö3£©¼ÆËãÊäÈë×ø±êÖÜÎ§À××ÜÊıº¯Êı
+int get_mine(char mine[Rows][Cols],int x,int y)//ï¼ˆå­—ç¬¦â€˜3â€™-å­—ç¬¦â€˜0â€™=æ•°å­—3ï¼‰è®¡ç®—è¾“å…¥åæ ‡å‘¨å›´é›·æ€»æ•°å‡½æ•°
 {
 	return mine[x-1][y-1]+mine[x][y-1]+mine[x+1][y-1]+
 		   mine[x-1][y]+               mine[x+1][y]+
@@ -58,42 +59,42 @@ int get_mine(char mine[Rows][Cols],int x,int y)//£¨×Ö·û¡®3¡¯-×Ö·û¡®0¡¯=Êı×Ö3£©¼Æ
 	       -8*'0';
 }
 
-void Recur(char mine[Rows][Cols],char show[Rows][Cols],int row,int col,int x,int y)//ÀûÓÃµİ¹éÕ¹¿ª×ø±êº¯Êı
+void Recur(char mine[Rows][Cols],char show[Rows][Cols],int row,int col,int x,int y)//åˆ©ç”¨é€’å½’å±•å¼€åæ ‡å‡½æ•°
 {
 	int i=0;
 	i=get_mine(mine,x,y);
 	if(show[x][y]='*' && i==0)
 	{
 		show[x][y]=' ';
-		if ((x-1)>0 && y>0 && (show[x-1][y]=='*'))//ÉÏ·½
+		if ((x-1)>0 && y>0 && (show[x-1][y]=='*'))//ä¸Šæ–¹
 		{
 			Recur(mine,show,row,col,x-1, y);
 		}
-		if ((x-1)>0 && (y+1)<=col && (show[x-1][y+1] == '*'))//ÓÒÉÏ·½
+		if ((x-1)>0 && (y+1)<=col && (show[x-1][y+1] == '*'))//å³ä¸Šæ–¹
 		{
 			Recur(mine,show,row,col,x-1, y+1);
 		}
-		if (x>0 && (y+1) <= y && (show[x][y+1] == '*'))//ÓÒ·½
+		if (x>0 && (y+1) <= y && (show[x][y+1] == '*'))//å³æ–¹
 		{
 			Recur(mine,show,row,col,x, y+1);
 		}
-		if ((x+1)<=row  && (y+1)<=col && (show[x+1][col+1]=='*'))//ÓÒÏÂ·½
+		if ((x+1)<=row  && (y+1)<=col && (show[x+1][col+1]=='*'))//å³ä¸‹æ–¹
 		{
 			Recur(mine,show,row,col,x+1,y+1);
 		}
-		if ((x+1)<=row  && y>0 && (show[x+1][col]=='*'))//ÏÂ·½
+		if ((x+1)<=row  && y>0 && (show[x+1][col]=='*'))//ä¸‹æ–¹
 		{
 			Recur(mine,show,row,col,x+1,y);
 		}
-		if ((x+1)<=row  && (y-1)>0 && (show[x+1][y-1] == '*'))//×óÏÂ·½
+		if ((x+1)<=row  && (y-1)>0 && (show[x+1][y-1] == '*'))//å·¦ä¸‹æ–¹
 		{
 			Recur(mine,show,row,col,x+1,y-1);
 		}
-		if (x>0 && (y-1)>0 && (show[x][y-1]=='*'))//×ó·½
+		if (x>0 && (y-1)>0 && (show[x][y-1]=='*'))//å·¦æ–¹
 		{
 			Recur(mine,show,row,col,x, y-1);
 		}
-		if ((x-1)>0 && (y-1)>0 && (show[x-1][y-1] == '*'))//×óÉÏ·½
+		if ((x-1)>0 && (y-1)>0 && (show[x-1][y-1] == '*'))//å·¦ä¸Šæ–¹
 		{
 			Recur(mine,show,row,col,x-1,y-1);
 		}
@@ -102,7 +103,7 @@ void Recur(char mine[Rows][Cols],char show[Rows][Cols],int row,int col,int x,int
 		show[x][y]=i+'0';
 }
 
-int Count(char show[Rows][Cols],int row,int col)//Ã»ÅÅ²éÍêµÄ×ø±ê¼ÆËãº¯Êı
+int Count(char show[Rows][Cols],int row,int col)//æ²¡æ’æŸ¥å®Œçš„åæ ‡è®¡ç®—å‡½æ•°
 {
 	int i=0;
 	int j=0;
@@ -118,36 +119,36 @@ int Count(char show[Rows][Cols],int row,int col)//Ã»ÅÅ²éÍêµÄ×ø±ê¼ÆËãº¯Êı
 	return count;
 }
 
-void Finemine(char mine[Rows][Cols],char show[Rows][Cols],int row,int col)//²éÕÒÀ×º¯Êı
+void Finemine(char mine[Rows][Cols],char show[Rows][Cols],int row,int col)//æŸ¥æ‰¾é›·å‡½æ•°
 {
 	int x=0;
 	int y=0;
-	while(Count(show,row,col)>Lei_count)//CountÓÃÓÚÅĞ¶ÏÊÇ·ñ½áÊø
+	while(Count(show,row,col)>Lei_count)//Countç”¨äºåˆ¤æ–­æ˜¯å¦ç»“æŸ
 	{
-		printf("ÇëÊäÈëÅÅ²éÎ»ÖÃµÄ×ø±ê£º");
+		printf("è¯·è¾“å…¥æ’æŸ¥ä½ç½®çš„åæ ‡ï¼š");
 		scanf("%d%d",&x,&y);
-		if(x>=1 && x<=row && y>=1 && y<=col)//ÅĞ¶Ï×ø±êºÏ²»ºÏ·¨
+		if(x>=1 && x<=row && y>=1 && y<=col)//åˆ¤æ–­åæ ‡åˆä¸åˆæ³•
 		{
-			if(mine[x][y]=='1')//²ÈÀ×
+			if(mine[x][y]=='1')//è¸©é›·
 			{
-				printf("ºÜÒÅº¶£¬ÄãÊäÁË\n");
-				Displayboard(mine,Row,Col);//´òÓ¡²¼ÖÃÀ×µÄµØÍ¼
+				Displayboard(mine,Row,Col);//æ‰“å°å¸ƒç½®é›·çš„åœ°å›¾
+				printf("å¾ˆé—æ†¾ï¼Œä½ è¾“äº†\n");
 				break;
 			}
 			else
 			{
 				Recur(mine,show,row,col,x,y);
-				Displayboard(show,Row,Col);//´òÓ¡Íæ¼ÒµØÍ¼
+				Displayboard(show,Row,Col);//æ‰“å°ç©å®¶åœ°å›¾
 			}
 		}
 		else
 		{
-			printf("ÊäÈë×ø±ê·Ç·¨£¬ÇëÖØĞÂÊäÈë×ø±ê£¡\n");
+			printf("è¾“å…¥åæ ‡éæ³•ï¼Œè¯·é‡æ–°è¾“å…¥åæ ‡ï¼\n");
 		}
 	}
 	if(Count(show,row,col)==Lei_count)
 	{
-		printf("¹§Ï²Äã£¬ÅÅÀ×³É¹¦£¡\n");
-		Displayboard(mine,Row,Col);//´òÓ¡²¼ÖÃÀ×µÄµØÍ¼
+		Displayboard(mine,Row,Col);//æ‰“å°å¸ƒç½®é›·çš„åœ°å›¾
+		printf("æ­å–œä½ ï¼Œæ’é›·æˆåŠŸï¼\n");
 	}
 }
