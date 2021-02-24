@@ -103,71 +103,71 @@
 //	return 0;
 //}
 
-////函数实现计算器（回调函数版）：
-//void menu()
-//{
-//	printf("*************************************\n");
-//	printf("*****     1.加         2.减     *****\n");
-//	printf("*****     3.乘         4.除     *****\n");
-//	printf("*********     0.退出程序     ********\n");
-//}
-//int Add(int x,int y)
-//{
-//	return x+y;
-//}
-//int Sub(int x,int y)
-//{
-//	return x-y;
-//}
-//int Mul(int x,int y)
-//{
-//	return x*y;
-//}
-//int Div(int x,int y)
-//{
-//	return x/y;
-//}
-//void HD(int (*c)(int,int))//回调函数-解决代码冗余的问题；形参为函数指针，用地址找到函数进行调用
-//{
-//	int x=0;
-//	int y=0;
-//	printf("请输入两个操作数：");
-//	scanf("%d%d",&x,&y);
-//	printf("%d\n",c(x,y));
-//}
-//int main()
-//{
-//	int input=0;
-//	int m=0;
-//	int n=0;
-//	do
-//	{
-//		menu();
-//		printf("请选择：");
-//		scanf("%d",&input);
-//		switch(input)
-//		{
-//		case 0:
-//			printf("退出程序\n");
-//			break;
-//		case 1:
-//			HD(Add);
-//			break;
-//		case 2:
-//			HD(Sub);
-//			break;
-//		case 3:
-//			HD(Mul);
-//			break;
-//		case 4:
-//			HD(Div);
-//			break;
-//		default:
-//			printf("选择错误，请重新选择！\n");
-//		}
-//	}while(input);
-//	return 0;
-//}
+//函数实现计算器（回调函数版）：
+void menu()
+{
+	printf("*************************************\n");
+	printf("*****     1.加         2.减     *****\n");
+	printf("*****     3.乘         4.除     *****\n");
+	printf("*********     0.退出程序     ********\n");
+}
+int Add(int x,int y)
+{
+	return x+y;
+}
+int Sub(int x,int y)
+{
+	return x-y;
+}
+int Mul(int x,int y)
+{
+	return x*y;
+}
+int Div(int x,int y)
+{
+	return x/y;
+}
+void HD(int (*c)(int,int))
+{
+	int x=0;
+	int y=0;
+	printf("请输入两个操作数：");
+	scanf("%d%d",&x,&y);
+	printf("%d\n",c(x,y));
+}
+int main()
+{
+	int input=0;
+	int m=0;
+	int n=0;
+	do
+	{
+		menu();
+		printf("请选择：");
+		scanf("%d",&input);
+		switch(input)
+		{
+		case 0:
+			printf("退出程序\n");
+			break;
+		case 1:
+			HD(Add);
+			break;
+		case 2:
+			HD(Sub);
+			break;
+		case 3:
+			HD(Mul);
+			break;
+		case 4:
+			HD(Div);
+			break;
+		default:
+			printf("选择错误，请重新选择！\n");
+		}
+	}while(input);
+	return 0;
+}
 
 ////递归函数实现n的k次方：
 //double Nkf(int n,int k)
