@@ -1,7 +1,6 @@
-#define _CRT_SECURE_NO_WARNINGS 1
-
 //#ifndef __三子棋_H__
 //#define __三子棋_H__
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
