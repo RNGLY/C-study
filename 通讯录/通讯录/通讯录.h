@@ -44,6 +44,5 @@ void AddContact(struct Contact* ps);//增加好友信息函数
 void DelContact(struct Contact* ps);//删除指定好友信息函数声明
 void SearchContact(const struct Contact* ps);//查找指定好友信息函数声明（const修饰表示只是查找指顶好友信息，不可被修改）
 void ModifyContact(struct Contact* ps);//修改指定好友信息函数声明
-void SortContact(struct Contact* ps);//按名字排序通讯录信息函数声明（const修饰表示只是排序通讯录所有信息，不可被修改）
-
+void SortContact(struct Contact* ps);//按名字排序通讯录信息函数声明
 #endif
