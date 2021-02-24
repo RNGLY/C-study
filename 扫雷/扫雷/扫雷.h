@@ -1,5 +1,3 @@
-#define _CRT_SECURE_NO_WARNINGS 1
-
 #ifndef __扫雷_H__
 #define __扫雷_H__
 
