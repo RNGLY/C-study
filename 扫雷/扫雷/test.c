@@ -1,25 +1,26 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 
-#include"É¨À×.h"
+#include"æ‰«é›·.h"
 
 void menu()
 {
+	printf("\n");
 	printf("********************************\n");
-	printf("*********** 1.play *************\n");
-	printf("*********** 0.exit *************\n");
+	printf("*******     æ‰«  é›·     *********\n");
+	printf("*******  1.ç©   0.é€€å‡º *********\n");
 	printf("********************************\n");
 }
 
 void game()
 {
-	char mine[Rows][Cols]={0};//´æ´¢²¼ÖÃÀ×µÄµØÍ¼
-	char show[Rows][Cols]={0};//´æ´¢Íæ¼ÒµØÍ¼
-	Initboard(mine,Rows,Cols,'0');//²¼ÖÃÀ×µÄµØÍ¼³õÊ¼»¯
-	Setmine(mine,Row,Col);//²¼ÖÃÀ×
-	Initboard(show,Rows,Cols,'*');//Íæ¼ÒµØÍ¼³õÊ¼»¯
-	//Displayboard(mine,Row,Col);//´òÓ¡²¼ÖÃÀ×µÄµØÍ¼£¨ÓÃÓÚ²âÊÔ£©
-	Displayboard(show,Row,Col);//´òÓ¡Íæ¼ÒµØÍ¼
-	Finemine(mine,show,Row,Col);//²éÕÒÀ×
+	char mine[Rows][Cols]={0};//å­˜å‚¨å¸ƒç½®é›·çš„åœ°å›¾
+	char show[Rows][Cols]={0};//å­˜å‚¨ç©å®¶åœ°å›¾
+	Initboard(mine,Rows,Cols,'0');//å¸ƒç½®é›·çš„åœ°å›¾åˆå§‹åŒ–
+	Setmine(mine,Row,Col);//å¸ƒç½®é›·
+	Initboard(show,Rows,Cols,'*');//ç©å®¶åœ°å›¾åˆå§‹åŒ–
+	//Displayboard(mine,Row,Col);//æ‰“å°å¸ƒç½®é›·çš„åœ°å›¾ï¼ˆç”¨äºæµ‹è¯•ï¼‰
+	Displayboard(show,Row,Col);//æ‰“å°ç©å®¶åœ°å›¾
+	Finemine(mine,show,Row,Col);//æŸ¥æ‰¾é›·
 }
 
 void test()
@@ -28,19 +29,19 @@ void test()
 	srand((unsigned int)time(NULL));
 	do
 	{
-		menu();//²Ëµ¥º¯Êı
-		printf("ÇëÑ¡Ôñ£º");
+		menu();//èœå•å‡½æ•°
+		printf("è¯·é€‰æ‹©ï¼š");
 		scanf("%d",&input);
-		switch(input)//ÅĞ¶ÏÍæ¼ÒÒâÍ¼
+		switch(input)//åˆ¤æ–­ç©å®¶æ„å›¾
 		{
 		case 1:
-			game();//ÓÎÏ·Ö÷Ìåº¯Êı
+			game();//æ¸¸æˆä¸»ä½“å‡½æ•°
 			break;
 		case 0:
-			printf("ÍË³öÓÎÏ·\n");
+			printf("é€€å‡ºæ¸¸æˆ\n");
 			break;
 		default:
-			printf("ÊäÈë´íÎó£¬ÇëÖØĞÂÑ¡Ôñ£¡\n");
+			printf("è¾“å…¥é”™è¯¯ï¼Œè¯·é‡æ–°é€‰æ‹©ï¼\n");
 			break;
 		}
 	}while(input);
