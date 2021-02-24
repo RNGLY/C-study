@@ -1,17 +1,16 @@
-#define _CRT_SECURE_NO_WARNINGS 1
+//#ifndef __ä¸‰å­æ£‹_H__
+//#define __ä¸‰å­æ£‹_H__
 
-//#ifndef __1_H__
-//#define __1_H__
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
 #define Row 3
 #define Col 3
 
-void Initboard(char board[Row][Col],int row,int col);//ÆåÅÌ³õÊ¼»¯º¯ÊıÉùÃ÷
-void Displayboard(char board[Row][Col],int row,int col);//ÆåÅÌ´òÓ¡º¯ÊıÉùÃ÷
-void Playermove(char board[Row][Col],int row,int col);//Íæ¼ÒÏÂÆåº¯ÊıÉùÃ÷
-void Computermove(char board[Row][Col],int row,int col);//µçÄÔÏÂÆåº¯ÊıÉùÃ÷
-char Iswin(char board[Row][Col],int row,int col);//ÅĞ¶ÏÓÎÏ·º¯ÊıÉùÃ÷£¨¼ÌĞø-¡°C¡±£¬Íæ¼ÒÓ®-¡°*¡±£¬µçÄÔÓ®-¡°#¡±£¬Æ½¾Ö-¡°Q¡±£©
+void Initboard(char board[Row][Col],int row,int col);//æ£‹ç›˜åˆå§‹åŒ–å‡½æ•°å£°æ˜
+void Displayboard(char board[Row][Col],int row,int col);//æ£‹ç›˜æ‰“å°å‡½æ•°å£°æ˜
+void Playermove(char board[Row][Col],int row,int col);//ç©å®¶ä¸‹æ£‹å‡½æ•°å£°æ˜
+void Computermove(char board[Row][Col],int row,int col);//ç”µè„‘ä¸‹æ£‹å‡½æ•°å£°æ˜
+char Iswin(char board[Row][Col],int row,int col);//åˆ¤æ–­æ¸¸æˆå‡½æ•°å£°æ˜ï¼ˆç»§ç»­-â€œCâ€ï¼Œç©å®¶èµ¢-â€œ*â€ï¼Œç”µè„‘èµ¢-â€œ#â€ï¼Œå¹³å±€-â€œQâ€ï¼‰
 
 //#endif

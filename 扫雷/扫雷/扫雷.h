@@ -1,24 +1,22 @@
-#define _CRT_SECURE_NO_WARNINGS 1
-
-#ifndef __1_H__
-#define __1_H__
+#ifndef __æ‰«é›·_H__
+#define __æ‰«é›·_H__
 
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
 
-#define Row 9//ĞĞ¸öÊı¶¨Òå
-#define Col 9//ÁĞ¸öÊı¶¨Òå
-#define Rows Row+2//±ãÓÚ´òÓ¡µØÍ¼
-#define Cols Col+2//±ãÓÚ´òÓ¡µØÍ¼
-#define Lei_count 10//À×¸öÊı¶¨Òå
+#define Row 9//è¡Œä¸ªæ•°å®šä¹‰
+#define Col 9//åˆ—ä¸ªæ•°å®šä¹‰
+#define Rows Row+2//ä¾¿äºæ‰“å°åœ°å›¾
+#define Cols Col+2//ä¾¿äºæ‰“å°åœ°å›¾
+#define Lei_count 10//é›·ä¸ªæ•°å®šä¹‰
 
-void Initboard(char board[Rows][Cols],int rows,int cols,char set);//µØÍ¼³õÊ¼»¯º¯ÊıÉùÃ÷
-void Displayboard(char board[Rows][Cols],int row,int col);//µØÍ¼´òÓ¡º¯ÊıÉùÃ÷
-void Setmine(char board[Rows][Cols],int row,int col);//²¼ÖÃÀ×º¯ÊıÉùÃ÷
-void Finemine(char mine[Rows][Cols],char show[Rows][Cols],int row,int col);//²éÕÒÀ×º¯ÊıÉùÃ÷
-int get_mine(char mine[Rows][Cols],int x,int y);//¼ÆËãÊäÈë×ø±êÖÜÎ§À××ÜÊıº¯ÊıÉùÃ÷
-void Recur(char mine[Rows][Cols],char show[Rows][Cols],int row,int col,int x,int y);//ÀûÓÃµİ¹éÕ¹¿ª×ø±êº¯ÊıÉùÃ÷
-int Count(char show[Rows][Cols],int row,int col);//Ã»ÅÅ²éÍêµÄ×ø±ê¼ÆËãº¯ÊıÉùÃ÷
+void Initboard(char board[Rows][Cols],int rows,int cols,char set);//åœ°å›¾åˆå§‹åŒ–å‡½æ•°å£°æ˜
+void Displayboard(char board[Rows][Cols],int row,int col);//åœ°å›¾æ‰“å°å‡½æ•°å£°æ˜
+void Setmine(char board[Rows][Cols],int row,int col);//å¸ƒç½®é›·å‡½æ•°å£°æ˜
+void Finemine(char mine[Rows][Cols],char show[Rows][Cols],int row,int col);//æŸ¥æ‰¾é›·å‡½æ•°å£°æ˜
+int get_mine(char mine[Rows][Cols],int x,int y);//è®¡ç®—è¾“å…¥åæ ‡å‘¨å›´é›·æ€»æ•°å‡½æ•°å£°æ˜
+void Recur(char mine[Rows][Cols],char show[Rows][Cols],int row,int col,int x,int y);//åˆ©ç”¨é€’å½’å±•å¼€åæ ‡å‡½æ•°å£°æ˜
+int Count(char show[Rows][Cols],int row,int col);//æ²¡æ’æŸ¥å®Œçš„åæ ‡è®¡ç®—å‡½æ•°å£°æ˜
 
 #endif
