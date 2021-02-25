@@ -141,9 +141,9 @@ void ModifyContact(struct Contact* ps)
 	}
 }
 
-static int cmp_name(const struct Contact* e1, const struct Contact* e2)//按名字比较好友信息函数（const修饰表示只是比较好友信息，不可被修改）
+static int cmp_name(const struct PeoInfo* e1, const struct PeoInfo* e2)//按名字比较好友信息函数（const修饰表示只是比较好友信息，不可被修改）
 {                                                                      //（static表示cmp_name是内部函数，不能被外部函数调用）
-	return strcmp(e1->data->name, e2->data->name);
+	return strcmp(e1->name, e2->name);
 }
 
 void SortContact(struct Contact* ps)//按名字排序通讯录信息函数
@@ -151,7 +151,7 @@ void SortContact(struct Contact* ps)//按名字排序通讯录信息函数
 	system("cls");
 	if (ps->size > 1)
 	{
-		qsort(ps, ps->size, sizeof(ps->data[0]), cmp_name);
+		qsort(ps->data, ps->size, sizeof(struct PeoInfo), cmp_name);
 		printf("好友信息排序成功\n");
 	}
 	else
