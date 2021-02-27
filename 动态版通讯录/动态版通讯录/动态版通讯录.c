@@ -1,33 +1,33 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 
-#include"¶¯Ì¬°æÍ¨Ñ¶Â¼.h"
+#include"åŠ¨æ€ç‰ˆé€šè®¯å½•.h"
 
-void InitContact(Contact* ps)//³õÊ¼»¯Í¨Ñ¶Â¼º¯Êý
+void InitContact(Contact* ps)//åˆå§‹åŒ–é€šè®¯å½•å‡½æ•°
 {
-	ps->data = (PeoInfo*)malloc(Default_size * sizeof(PeoInfo));//Í¨Ñ¶Â¼³õÊ¼»¯£¨¶¯Ì¬·ÖÅä£©ÄÜ´æ·Å3¸öºÃÓÑÐÅÏ¢µÄÄÚ´æ
+	ps->data = (PeoInfo*)malloc(Default_size * sizeof(PeoInfo));//é€šè®¯å½•åˆå§‹åŒ–ï¼ˆåŠ¨æ€åˆ†é…ï¼‰èƒ½å­˜æ”¾3ä¸ªå¥½å‹ä¿¡æ¯çš„å†…å­˜
 	if (ps->data == NULL)
 	{
-		printf("%s\n", strerror(errno));//¶¯Ì¬ÄÚ´æ¿ª±ÙÊ§°Ü£¬´òÓ¡Ê§°ÜÔ­Òòºó£¬Á¢¼´·µ»Ø
+		printf("InitContactï¼šï¼š%s\n", strerror(errno));//åŠ¨æ€å†…å­˜å¼€è¾Ÿå¤±è´¥ï¼Œæ‰“å°å¤±è´¥åŽŸå› åŽï¼Œç«‹å³è¿”å›ž
 		return;
 	}
-	ps->size = 0;//ºÃÓÑÐÅÏ¢¸öÊý³õÊ¼»¯Îª0
-	ps->capacity = Default_size;//×î´óÈÝÁ¿³õÊ¼»¯Îª3
+	ps->size = 0;//å¥½å‹ä¿¡æ¯ä¸ªæ•°åˆå§‹åŒ–ä¸º0
+	ps->capacity = Default_size;//æœ€å¤§å®¹é‡åˆå§‹åŒ–ä¸º3
 }
 
-void ShowContact(const Contact* ps)//ÏÔÊ¾Í¨Ñ¶Â¼ËùÓÐÐÅÏ¢º¯Êý
+void ShowContact(const Contact* ps)//æ˜¾ç¤ºé€šè®¯å½•æ‰€æœ‰ä¿¡æ¯å‡½æ•°
 {
 	system("cls");
 	if (ps->size == 0)
 	{
-		printf("Í¨Ñ¶Â¼Îª¿Õ\n");
+		printf("é€šè®¯å½•ä¸ºç©º\n");
 	}
 	else
 	{
 		int i = 0;
-		printf("%-20s\t%-5s\t%-4s\t%-12s\t%-30s\n", "ÐÕÃû", "ÐÔ±ð", "ÄêÁä", "µç»°", "µØÖ·"); //´òÓ¡±êÌâ£º%sÖÐ¼äµÄÊý±íÊ¾¶àÉÙ¸ö×Ö·û£¬\tÖÆ±í·û£¨¸ººÅ±íÊ¾×ó¶ÔÆë£©
+		printf("%-20s\t%-5s\t%-4s\t%-12s\t%-30s\n", "å§“å", "æ€§åˆ«", "å¹´é¾„", "ç”µè¯", "åœ°å€"); //æ‰“å°æ ‡é¢˜ï¼š%sä¸­é—´çš„æ•°è¡¨ç¤ºå¤šå°‘ä¸ªå­—ç¬¦ï¼Œ\tåˆ¶è¡¨ç¬¦ï¼ˆè´Ÿå·è¡¨ç¤ºå·¦å¯¹é½ï¼‰
 		for (i = 0; i < ps->size; i++)
 		{
-			printf("%-20s\t%-5s\t%-4d\t%-12s\t%-30s\n",//´òÓ¡Êý¾Ý
+			printf("%-20s\t%-5s\t%-4d\t%-12s\t%-30s\n",//æ‰“å°æ•°æ®
 				ps->data[i].name,
 				ps->data[i].sex,
 				ps->data[i].age,
@@ -37,65 +37,65 @@ void ShowContact(const Contact* ps)//ÏÔÊ¾Í¨Ñ¶Â¼ËùÓÐÐÅÏ¢º¯Êý
 	}
 }
 
-static int FineByName(const Contact* ps, char name[Max_Name])//²éÕÒºÃÓÑÐÅÏ¢º¯Êý£¨ÒòÎªÖ¸¶¨ºÃÓÑµÄÔöÉ¾²é¸Ä¶¼ÐèÒª²éÕÒ£¬¹Êµ¥¶À·â×°³ÉÒ»¸öº¯Êý£¬½â¾ö´úÂëÈßÓàÎÊÌâ£©
-{                                                                   //£¨static±íÊ¾FineByNameÊÇÄÚ²¿º¯Êý£¬²»ÄÜ±»Íâ²¿º¯Êýµ÷ÓÃ£©    
+static int FineByName(const Contact* ps, char name[Max_Name])//æŸ¥æ‰¾å¥½å‹ä¿¡æ¯å‡½æ•°ï¼ˆå› ä¸ºæŒ‡å®šå¥½å‹çš„å¢žåˆ æŸ¥æ”¹éƒ½éœ€è¦æŸ¥æ‰¾ï¼Œæ•…å•ç‹¬å°è£…æˆä¸€ä¸ªå‡½æ•°ï¼Œè§£å†³ä»£ç å†—ä½™é—®é¢˜ï¼‰
+{                                                                   //ï¼ˆstaticè¡¨ç¤ºFineByNameæ˜¯å†…éƒ¨å‡½æ•°ï¼Œä¸èƒ½è¢«å¤–éƒ¨å‡½æ•°è°ƒç”¨ï¼‰    
 	int i = 0;
-	for (i = 0; i < ps->size; i++)//²éÕÒÉ¾³ýµÄÈËËùÔÚµÄÎ»ÖÃ
+	for (i = 0; i < ps->size; i++)//æŸ¥æ‰¾åˆ é™¤çš„äººæ‰€åœ¨çš„ä½ç½®
 	{
 		if (0 == strcmp(ps->data[i].name, name))
 		{
-			return i;//ÕÒµ½ÁË·µ»ØÍ¨Ñ¶Â¼ÖÐµÄdataÏÂ±ê
+			return i;//æ‰¾åˆ°äº†è¿”å›žé€šè®¯å½•ä¸­çš„dataä¸‹æ ‡
 		}
 	}
-	return -1; //ÕÒ²»µ½·µ»Ø - 1
+	return -1; //æ‰¾ä¸åˆ°è¿”å›ž - 1
 }
 
-static void Check_Capacity(Contact* ps)//¼ì²âÈÝÁ¿º¯Êý£¨ÂúÁË£¬ÔöÈÝ£»Ã»Âú,É¶ÊÂ²»¸É£©
-{                                             //£¨static±íÊ¾FineByNameÊÇÄÚ²¿º¯Êý£¬²»ÄÜ±»Íâ²¿º¯Êýµ÷ÓÃ£©
-	if (ps->size == ps->capacity)//ÂúÁË
+static void Check_Capacity(Contact* ps)//æ£€æµ‹å®¹é‡å‡½æ•°ï¼ˆæ»¡äº†ï¼Œå¢žå®¹ï¼›æ²¡æ»¡,å•¥äº‹ä¸å¹²ï¼‰
+{                                             //ï¼ˆstaticè¡¨ç¤ºFineByNameæ˜¯å†…éƒ¨å‡½æ•°ï¼Œä¸èƒ½è¢«å¤–éƒ¨å‡½æ•°è°ƒç”¨ï¼‰
+	if (ps->size == ps->capacity)//æ»¡äº†
 	{
-		struct PeoInfo* ptr = (struct PeoInfo*)realloc(ps->data, (ps->capacity + 2)*sizeof(struct PeoInfo));//ÔöÈÝ
-		if (ptr != NULL)//¶¯Ì¬ÄÚ´æ¿ª±Ù³É¹¦
+		struct PeoInfo* ptr = (struct PeoInfo*)realloc(ps->data, (ps->capacity + 2)*sizeof(struct PeoInfo));//å¢žå®¹
+		if (ptr != NULL)//åŠ¨æ€å†…å­˜å¼€è¾ŸæˆåŠŸ
 		{
 			ps->data = ptr;
 			ps->capacity += 2;
 		}
 		else
 		{
-			printf("%s\n", strerror(errno));//¶¯Ì¬ÄÚ´æ¿ª±ÙÊ§°Ü£¬´òÓ¡Ê§°ÜÔ­Òòºó£¬Á¢¼´·µ»Ø
+			printf("Check_Capacityï¼šï¼š%s\n", strerror(errno));//åŠ¨æ€å†…å­˜å¼€è¾Ÿå¤±è´¥ï¼Œæ‰“å°å¤±è´¥åŽŸå› åŽï¼Œç«‹å³è¿”å›ž
 			return;
 		}
 	}
 }
 
-void AddContact(Contact* ps)//Ôö¼ÓºÃÓÑÐÅÏ¢º¯Êý
+void AddContact(Contact* ps)//å¢žåŠ å¥½å‹ä¿¡æ¯å‡½æ•°
 {
 	system("cls");
-	Check_Capacity(ps);//¼ì²âÈÝÁ¿º¯Êý
-		printf("ÇëÊäÈëÐÕÃû£º");
-		scanf("%s", ps->data[ps->size].name);//nameÊÇÊý×é£¬Êý×éÃûÏàµ±ÓÚÊý×éÊ×ÔªËØµØÖ·
-		printf("ÇëÊäÈëÐÔ±ð£º");
-		scanf("%s", ps->data[ps->size].sex);//sexÊÇÊý×é£¬Êý×éÃûÏàµ±ÓÚÊý×éÊ×ÔªËØµØÖ·
-		printf("ÇëÊäÈëÄêÁä£º");
-		scanf("%d", &(ps->data[ps->size].age));//ageÊÇintÐÍ£¬ËùÒÔÐèÒªÈ¡µØÖ·
-		printf("ÇëÊäÈëµç»°£º");
-		scanf("%s", ps->data[ps->size].tele);//teleÊÇÊý×é£¬Êý×éÃûÏàµ±ÓÚÊý×éÊ×ÔªËØµØÖ·
-		printf("ÇëÊäÈëµØÖ·£º");
-		scanf("%s", ps->data[ps->size].addr);//addrÊÇÊý×é£¬Êý×éÃûÏàµ±ÓÚÊý×éÊ×ÔªËØµØÖ·
+	Check_Capacity(ps);//æ£€æµ‹å®¹é‡å‡½æ•°
+		printf("è¯·è¾“å…¥å§“åï¼š");
+		scanf("%s", ps->data[ps->size].name);//nameæ˜¯æ•°ç»„ï¼Œæ•°ç»„åç›¸å½“äºŽæ•°ç»„é¦–å…ƒç´ åœ°å€
+		printf("è¯·è¾“å…¥æ€§åˆ«ï¼š");
+		scanf("%s", ps->data[ps->size].sex);//sexæ˜¯æ•°ç»„ï¼Œæ•°ç»„åç›¸å½“äºŽæ•°ç»„é¦–å…ƒç´ åœ°å€
+		printf("è¯·è¾“å…¥å¹´é¾„ï¼š");
+		scanf("%d", &(ps->data[ps->size].age));//ageæ˜¯intåž‹ï¼Œæ‰€ä»¥éœ€è¦å–åœ°å€
+		printf("è¯·è¾“å…¥ç”µè¯ï¼š");
+		scanf("%s", ps->data[ps->size].tele);//teleæ˜¯æ•°ç»„ï¼Œæ•°ç»„åç›¸å½“äºŽæ•°ç»„é¦–å…ƒç´ åœ°å€
+		printf("è¯·è¾“å…¥åœ°å€ï¼š");
+		scanf("%s", ps->data[ps->size].addr);//addræ˜¯æ•°ç»„ï¼Œæ•°ç»„åç›¸å½“äºŽæ•°ç»„é¦–å…ƒç´ åœ°å€
 		ps->size++;
-		printf("ºÃÓÑÐÅÏ¢Ìí¼Ó³É¹¦\n");
+		printf("å¥½å‹ä¿¡æ¯æ·»åŠ æˆåŠŸ\n");
 }
 
-void DelContact(Contact* ps)//É¾³ýÖ¸¶¨ºÃÓÑÐÅÏ¢º¯ÊýÉùÃ÷
+void DelContact(Contact* ps)//åˆ é™¤æŒ‡å®šå¥½å‹ä¿¡æ¯å‡½æ•°å£°æ˜Ž
 {
 	system("cls");
 	char name[Max_Sex];
-	printf("ÇëÊäÈëÉ¾³ýÈËµÄÐÕÃû£º");
+	printf("è¯·è¾“å…¥åˆ é™¤äººçš„å§“åï¼š");
 	scanf("%s", name);
-	int pos = FineByName(ps, name);//²éÕÒºÃÓÑÐÅÏ¢º¯Êý
+	int pos = FineByName(ps, name);//æŸ¥æ‰¾å¥½å‹ä¿¡æ¯å‡½æ•°
 	if (-1 == pos)
 	{
-		printf("ÒªÉ¾³ýµÄÈËÐÅÏ¢²»´æÔÚ\n");
+		printf("è¦åˆ é™¤çš„äººä¿¡æ¯ä¸å­˜åœ¨\n");
 	}
 	else
 	{
@@ -105,25 +105,25 @@ void DelContact(Contact* ps)//É¾³ýÖ¸¶¨ºÃÓÑÐÅÏ¢º¯ÊýÉùÃ÷
 			ps->data[j] = ps->data[j + 1];
 		}
 		ps->size--;
-		printf("ºÃÓÑÐÅÏ¢É¾³ý³É¹¦\n");
+		printf("å¥½å‹ä¿¡æ¯åˆ é™¤æˆåŠŸ\n");
 	}
 }
 
-void SearchContact(const Contact* ps)//²éÕÒÖ¸¶¨ºÃÓÑµÄÐÅÏ¢º¯Êý
+void SearchContact(const Contact* ps)//æŸ¥æ‰¾æŒ‡å®šå¥½å‹çš„ä¿¡æ¯å‡½æ•°
 {
 	system("cls");
 	char name[Max_Name];
-	printf("ÇëÊäÈë²éÕÒÈËµÄÐÕÃû£º");
+	printf("è¯·è¾“å…¥æŸ¥æ‰¾äººçš„å§“åï¼š");
 	scanf("%s", name);
-	int pos = FineByName(ps, name);//²éÕÒºÃÓÑÐÅÏ¢º¯Êý
+	int pos = FineByName(ps, name);//æŸ¥æ‰¾å¥½å‹ä¿¡æ¯å‡½æ•°
 	if (-1 == pos)
 	{
-		printf("Òª²éÕÒµÄÈËÐÅÏ¢²»´æÔÚ\n");
+		printf("è¦æŸ¥æ‰¾çš„äººä¿¡æ¯ä¸å­˜åœ¨\n");
 	}
 	else
 	{
-		printf("%-20s\t%-5s\t%-4s\t%-12s\t%-30s\n", "ÐÕÃû", "ÐÔ±ð", "ÄêÁä", "µç»°", "µØÖ·"); //´òÓ¡±êÌâ£º%sÖÐ¼äµÄÊý±íÊ¾¶àÉÙ¸ö×Ö·û£¬\tÖÆ±í·û£¨¸ººÅ±íÊ¾×ó¶ÔÆë£©
-		printf("%-20s\t%-5s\t%-4d\t%-12s\t%-30s\n",//´òÓ¡Êý¾Ý
+		printf("%-20s\t%-5s\t%-4s\t%-12s\t%-30s\n", "å§“å", "æ€§åˆ«", "å¹´é¾„", "ç”µè¯", "åœ°å€"); //æ‰“å°æ ‡é¢˜ï¼š%sä¸­é—´çš„æ•°è¡¨ç¤ºå¤šå°‘ä¸ªå­—ç¬¦ï¼Œ\tåˆ¶è¡¨ç¬¦ï¼ˆè´Ÿå·è¡¨ç¤ºå·¦å¯¹é½ï¼‰
+		printf("%-20s\t%-5s\t%-4d\t%-12s\t%-30s\n",//æ‰“å°æ•°æ®
 			ps->data[pos].name,
 			ps->data[pos].sex,
 			ps->data[pos].age,
@@ -136,49 +136,49 @@ void ModifyContact(Contact* ps)
 {
 	system("cls");
 	char name[Max_Sex];
-	printf("ÇëÊäÈëÐÞ¸ÄÈËµÄÐÕÃû£º");
+	printf("è¯·è¾“å…¥ä¿®æ”¹äººçš„å§“åï¼š");
 	scanf("%s", name);
-	int pos = FineByName(ps, name);//²éÕÒºÃÓÑÐÅÏ¢º¯Êý
+	int pos = FineByName(ps, name);//æŸ¥æ‰¾å¥½å‹ä¿¡æ¯å‡½æ•°
 	if (-1 == pos)
 	{
-		printf("ÒªÐÞ¸ÄµÄÈËÐÅÏ¢²»´æÔÚ\n");
+		printf("è¦ä¿®æ”¹çš„äººä¿¡æ¯ä¸å­˜åœ¨\n");
 	}
 	else
 	{
-		printf("ÇëÊäÈëÐÕÃû£º");
-		scanf("%s", ps->data[pos].name);//nameÊÇÊý×é£¬Êý×éÃûÏàµ±ÓÚÊý×éÊ×ÔªËØµØÖ·
-		printf("ÇëÊäÈëÐÔ±ð£º");
-		scanf("%s", ps->data[pos].sex);//sexÊÇÊý×é£¬Êý×éÃûÏàµ±ÓÚÊý×éÊ×ÔªËØµØÖ·
-		printf("ÇëÊäÈëÄêÁä£º");
-		scanf("%d", &(ps->data[pos].age));//ageÊÇintÐÍ£¬ËùÒÔÐèÒªÈ¡µØÖ·
-		printf("ÇëÊäÈëµç»°£º");
-		scanf("%s", ps->data[pos].tele);//teleÊÇÊý×é£¬Êý×éÃûÏàµ±ÓÚÊý×éÊ×ÔªËØµØÖ·
-		printf("ÇëÊäÈëµØÖ·£º");
-		scanf("%s", ps->data[pos].addr);//addrÊÇÊý×é£¬Êý×éÃûÏàµ±ÓÚÊý×éÊ×ÔªËØµØÖ·
-		printf("ºÃÓÑÐÅÏ¢ÐÞ¸Ä³É¹¦\n");
+		printf("è¯·è¾“å…¥å§“åï¼š");
+		scanf("%s", ps->data[pos].name);//nameæ˜¯æ•°ç»„ï¼Œæ•°ç»„åç›¸å½“äºŽæ•°ç»„é¦–å…ƒç´ åœ°å€
+		printf("è¯·è¾“å…¥æ€§åˆ«ï¼š");
+		scanf("%s", ps->data[pos].sex);//sexæ˜¯æ•°ç»„ï¼Œæ•°ç»„åç›¸å½“äºŽæ•°ç»„é¦–å…ƒç´ åœ°å€
+		printf("è¯·è¾“å…¥å¹´é¾„ï¼š");
+		scanf("%d", &(ps->data[pos].age));//ageæ˜¯intåž‹ï¼Œæ‰€ä»¥éœ€è¦å–åœ°å€
+		printf("è¯·è¾“å…¥ç”µè¯ï¼š");
+		scanf("%s", ps->data[pos].tele);//teleæ˜¯æ•°ç»„ï¼Œæ•°ç»„åç›¸å½“äºŽæ•°ç»„é¦–å…ƒç´ åœ°å€
+		printf("è¯·è¾“å…¥åœ°å€ï¼š");
+		scanf("%s", ps->data[pos].addr);//addræ˜¯æ•°ç»„ï¼Œæ•°ç»„åç›¸å½“äºŽæ•°ç»„é¦–å…ƒç´ åœ°å€
+		printf("å¥½å‹ä¿¡æ¯ä¿®æ”¹æˆåŠŸ\n");
 	}
 }
 
-static int cmp_name(const PeoInfo* e1, const PeoInfo* e2)//°´Ãû×Ö±È½ÏºÃÓÑÐÅÏ¢º¯Êý£¨constÐÞÊÎ±íÊ¾Ö»ÊÇ±È½ÏºÃÓÑÐÅÏ¢£¬²»¿É±»ÐÞ¸Ä£©
-{                                                                      //£¨static±íÊ¾cmp_nameÊÇÄÚ²¿º¯Êý£¬²»ÄÜ±»Íâ²¿º¯Êýµ÷ÓÃ£©
+static int cmp_name(const PeoInfo* e1, const PeoInfo* e2)//æŒ‰åå­—æ¯”è¾ƒå¥½å‹ä¿¡æ¯å‡½æ•°ï¼ˆconstä¿®é¥°è¡¨ç¤ºåªæ˜¯æ¯”è¾ƒå¥½å‹ä¿¡æ¯ï¼Œä¸å¯è¢«ä¿®æ”¹ï¼‰
+{                                                                      //ï¼ˆstaticè¡¨ç¤ºcmp_nameæ˜¯å†…éƒ¨å‡½æ•°ï¼Œä¸èƒ½è¢«å¤–éƒ¨å‡½æ•°è°ƒç”¨ï¼‰
 	return strcmp(e1->name, e2->name);
 }
 
-void SortContact(struct Contact* ps)//°´Ãû×ÖÅÅÐòÍ¨Ñ¶Â¼ÐÅÏ¢º¯Êý
+void SortContact(struct Contact* ps)//æŒ‰åå­—æŽ’åºé€šè®¯å½•ä¿¡æ¯å‡½æ•°
 {
 	system("cls");
 	if (ps->size > 1)
 	{
 		qsort(ps->data, ps->size, sizeof(PeoInfo), cmp_name);
-		printf("ºÃÓÑÐÅÏ¢ÅÅÐò³É¹¦\n");
+		printf("å¥½å‹ä¿¡æ¯æŽ’åºæˆåŠŸ\n");
 	}
 	else
 	{
-		printf("ºÃÓÑÐÅÏ¢Ì«ÉÙ£¬ÎÞ·¨ÅÅÐò\n");
+		printf("å¥½å‹ä¿¡æ¯å¤ªå°‘ï¼Œæ— æ³•æŽ’åº\n");
 	}
 }
 
-void Destroy_Contact(Contact* ps)//Ïú»ÙÍ¨Ñ¶Â¼º¯ÊýÉùÃ÷£¨ÊÍ·Å¶¯Ì¬¿ª±ÙµÄÄÚ´æ£©
+void Destroy_Contact(Contact* ps)//é”€æ¯é€šè®¯å½•å‡½æ•°å£°æ˜Žï¼ˆé‡Šæ”¾åŠ¨æ€å¼€è¾Ÿçš„å†…å­˜ï¼‰
 {
 	free(ps->data);
 	ps->data = NULL;
