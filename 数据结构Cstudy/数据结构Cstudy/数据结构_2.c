@@ -60,19 +60,41 @@
 //	return 0;
 //}
 
-////单链表接口测试：
+////不带头非循环单链表接口测试：
 //void TestSList1()
 //{
-//	SListNode* list = NULL;
-//	list=SListPushBack(list, 1);
-//	list=SListPushBack(list, 2);
-//	list = SListPushBack(list, 3);
-//	list = SListPushBack(list, 4);
-//	SListPrint(list);
+//	SListNode* pList = NULL;
+//	SListPushBack(&pList, 1);
+//	SListPushBack(&pList, 2);
+//	SListPushBack(&pList, 3);
+//	SListPushBack(&pList, 4);
+//	SListPrint(pList);
+//	SListPushFront(&pList, 0);
+//	SListPrint(pList);
+//	SListPopBack(&pList);
+//	SListPrint(pList);
+//	SListPopFront(&pList);
+//	SListPrint(pList);
+//	SListNode* ret = SListFind(pList, 3);
+////	ret->_Data = 30;
+//	SListInsertAfter(ret, 30);
+//	SListPrint(pList);
+//	SListEraseAfter(ret);
+//	SListPrint(pList);
+//}
+//void TestSList2()
+//{
+//	SListNode* pList = NULL;
+//	SListPushBack(&pList, 1);
+//	SListPushBack(&pList, 2);
+//	SListPushBack(&pList, 3);
+//	SListPushBack(&pList, 4);
+//	SListPrint(pList);
+//	SListDestroy(&pList);
 //}
 //int main()
 //{
-//	TestSList1();
+//	TestSList2();
 //	return 0;
 //}
 

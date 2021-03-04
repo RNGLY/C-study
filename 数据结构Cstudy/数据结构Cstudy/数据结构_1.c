@@ -157,10 +157,10 @@
 //	return -1;
 //}
 
-////单链表常见接口：
-//void SListPrint(SListNode* head)
+////不带头非循环单链表常见接口：
+//void SListPrint(SListNode* pList)
 //{
-//	SListNode* cur = head;
+//	SListNode* cur = pList;
 //	while (cur != NULL)
 //	{
 //		printf("%d->", cur->_Data);
@@ -168,26 +168,113 @@
 //	}
 //	printf("NULL\n");
 //}
-//SListNode* SListPushBack(SListNode* head, SLTDataType x)
+//SListNode* BuySListNode(SLTDataType x)
 //{
-//	SListNode* tail = head;
-//	SListNode* newnode = (SListNode*)malloc(sizeof(SListNode));
-//	newnode->_Data = x;
-//	newnode->_next = NULL;
-//	if (head == NULL)
+//	SListNode* newNode = (SListNode*)malloc(sizeof(SListNode));
+//	newNode->_Data = x;
+//	newNode->_next = NULL;
+//	return newNode;
+//}
+//void SListPushBack(SListNode** ppList, SLTDataType x)
+//{
+//	SListNode* newNode = BuySListNode(x);
+//	if (*ppList == NULL)
 //	{
-//		head = newnode;
-//		return head;
+//		*ppList = newNode;
 //	}
 //	else
 //	{
+//		SListNode* tail = *ppList;
 //		while (tail->_next != NULL)
 //		{
 //			tail = tail->_next;
 //		}
-//		tail->_next = newnode;
-//		return head;
+//		tail->_next = newNode;
 //	}
+//}
+//void SListPopBack(SListNode** ppList)
+//{
+//	if (*ppList == NULL)
+//	{
+//		return;
+//	}
+//	else if ((*ppList)->_next == NULL)
+//	{
+//		free(*ppList);
+//		*ppList = NULL;
+//	}
+//	else
+//	{
+//		SListNode* prev = NULL;
+//		SListNode* tail = *ppList;
+//		while (tail->_next != NULL)
+//		{
+//			prev = tail;
+//			tail = tail->_next;
+//		}
+//		free(tail);
+//		if (prev != NULL)
+//		{
+//			prev->_next = NULL;
+//		}
+//	}
+//}
+//void SListPushFront(SListNode** ppList, SLTDataType x)
+//{
+//	SListNode* newNode = BuySListNode(x);
+//	newNode->_next = *ppList;
+//	*ppList = newNode;
+//}
+//void SListPopFront(SListNode** ppList)
+//{
+//	if (*ppList)
+//	{
+//		SListNode* next = (*ppList)->_next;
+//		free(*ppList);
+//		*ppList = next;
+//	}
+//}
+//SListNode* SListFind(SListNode* pList, SLTDataType x)
+//{
+//	SListNode* cur = pList;
+//	while (cur)
+//	{
+//		if (cur->_Data == x)
+//		{
+//			return cur;
+//		}
+//		else
+//		{
+//			cur = cur->_next;
+//		}
+//	}
+//	return NULL;
+//}
+//void SListInsertAfter(SListNode* pos, SLTDataType x)
+//{
+//	SListNode* newNode = BuySListNode(x);
+//	newNode->_next = pos->_next;
+//	pos->_next = newNode;
+//}
+//void SListEraseAfter(SListNode* pos)
+//{
+//	SListNode* next = pos->_next;
+//	if (next != NULL)
+//	{
+//		pos->_next = next->_next;
+//		free(next);
+//	}
+//}
+//void SListDestroy(SListNode** ppList)
+//{
+//	SListNode* cur = *ppList;
+//	while (cur)
+//	{
+//		SListNode* next = cur->_next;
+//		free(cur);
+//		cur = next;
+//	}
+//	*ppList = NULL;
 //}
 
 ////函数实现原地移除数组中值为val的数（要求时间复杂度为O(N)，空间复杂度为O(1)）：
@@ -358,4 +445,228 @@
 //	return 0;
 //}
 
-//
+////函数实现返回单链表中间结点，如果有两个结点返回第二个结点（要求只能遍历链表一次）
+//#include<stdio.h>
+//typedef struct ListNode
+//{
+//	int val;
+//	struct ListNode* next;
+//}ListNode;
+//struct ListNode* middleNode(struct ListNode* head)
+//{
+//	ListNode* slow = head, *fast = head;
+//	while (fast != NULL && fast->next != NULL)
+//	{
+//		slow = slow->next;
+//		fast = fast->next->next;
+//	}
+//	return slow;
+//}
+
+////函数实现删除单链表中所有值为val的结点，然后返回链表（要求只能遍历链表一次）
+//#include<stdio.h>
+//typedef struct ListNode
+//{
+//	int val;
+//	struct ListNode* next;
+//}ListNode;
+//struct ListNode* removeElements(struct ListNode* head, int val)
+//{
+//	ListNode* prev = NULL, *cur = head;
+//	while (cur != NULL)
+//	{
+//		if (cur->val == val)
+//		{
+//			ListNode* next = cur->next;
+//			free(cur);
+//			if (cur == head)
+//			{
+//				head = next;
+//			}
+//			else
+//			{
+//				prev->next = next;
+//			}
+//			cur = next;
+//		}
+//		else
+//		{
+//			prev = cur;
+//			cur = cur->next;
+//		}
+//	}
+//	return head;
+//}
+
+////函数实现反转单链表（指针转方向）：
+//#include<stdio.h>
+//typedef struct ListNode
+//{
+//	int val;
+//	struct ListNode* next;
+//}ListNode;
+//struct ListNode* reverseList(struct ListNode* head)
+//{
+//	if (head == NULL || head->next == NULL)
+//	{
+//		return head;
+//	}
+//	else
+//	{
+//		ListNode* n1 = NULL, *n2 = head, *n3 = n2->next;
+//		while (n2)
+//		{
+//			n2->next = n1;
+//			n1 = n2;
+//			n2 = n3;
+//			if (n3)
+//			{
+//				n3 = n3->next;
+//			}
+//		}
+//		return n1;
+//	}
+//}
+
+////函数实现反转单链表（取结点头插到新链表）：
+//#include<stdio.h>
+//#include<stdlib.h>
+//typedef struct ListNode
+//{
+//	int val;
+//	struct ListNode* next;
+//}ListNode;
+//struct ListNode* reverseList(struct ListNode* head)
+//{
+//	ListNode* cur = head;
+//	ListNode* newhead = NULL;
+//	while (cur)
+//	{
+//		ListNode* next = cur->next;
+//		cur->next = newhead;
+//		newhead = cur;
+//		cur = next;
+//	}
+//	return newhead;
+//}
+
+////函数实现输出一个链表的倒数第k个结点：
+//#include<stdio.h>
+//typedef struct ListNode
+//{
+//	int val;
+//	struct ListNode* next;
+//}ListNode;
+//ListNode* FindKthToTail(ListNode* pListHead,unsigned int k)
+//{
+//	ListNode* slow = pListHead, *fast = pListHead;
+//	while (k--)
+//	{
+//		if (fast == NULL)
+//		{
+//			return NULL;
+//		}
+//		fast = fast->next;
+//	}
+//	while (fast)
+//	{
+//		fast = fast->next;
+//		slow = slow->next;
+//	}
+//	return slow;
+//}
+
+////函数实现合并两个有序链表：
+//#include<stdio.h>
+//typedef struct ListNode
+//{
+//	int val;
+//	struct ListNode* next;
+//}ListNode;
+//ListNode* mergeTwoLists(ListNode* L1, ListNode* L2)
+//{
+//	if (L1 == NULL)
+//	{
+//		return L2;
+//	}
+//	if (L2 == NULL)
+//	{
+//		return L1;
+//	}
+//	ListNode* head = NULL, *tail = NULL;
+//	while (L1 && L2)
+//	{
+//		if (L1->val < L2->val)
+//		{
+//			if (tail == NULL)
+//			{
+//				head = tail = L1;
+//			}
+//			else
+//			{
+//				tail->next = L1;
+//				tail = L1;
+//			}
+//			L1 = L1->next;
+//		}
+//		else
+//		{
+//			if (tail == NULL)
+//			{
+//				head = tail = L2;
+//			}
+//			else
+//			{
+//				tail->next = L2;
+//				tail = L2;
+//			}
+//			L2 = L2->next;
+//		}
+//	}
+//	if (L1 == NULL)
+//	{
+//		tail->next = L1;
+//	}
+//	else if (L2 == NULL)
+//	{
+//		tail->next = L2;
+//	}
+//	return head;
+//}
+
+//函数实现以给定的值x将链表分割为两部分：
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct ListNode
+{
+	int val;
+	struct ListNode* next;
+}ListNode;
+ListNode*  partition(ListNode* pHead, int x)
+{
+	ListNode* cur = pHead, *lesserHead, *lesserTail, *greaterHead, *greaterTail;
+	lesserHead = lesserTail = (ListNode*)malloc(sizeof(ListNode));
+	greaterHead = greaterTail = (ListNode*)malloc(sizeof(ListNode));
+	lesserTail->next = NULL;
+	greaterTail->next = NULL;
+	while (cur != NULL)
+	{
+		if (cur->val < x)
+		{
+			lesserTail->next = cur;
+			lesserTail = cur;
+		}
+		else
+		{
+			greaterTail->next = cur;
+			greaterTail = cur;
+		}
+		cur = cur->next;
+	}
+	lesserTail->next = greaterHead->next;
+	greaterTail->next = NULL;
+	ListNode* list = lesserHead->next;
+	free(lesserHead);
+	free(greaterHead);
+	return list;
+}

@@ -29,7 +29,7 @@
 //void SeqListBubbleSort(SeqList* ps);
 //void SeqListBinaryFind(SeqList* ps,SLDataType x);
 
-////单链表头文件：
+////不带头非循环单链表头文件：
 //#include<stdio.h>
 //#include<stdlib.h>
 //
@@ -38,12 +38,15 @@
 //{
 //	SLTDataType _Data;
 //	struct SListNode* _next;
-//};
-//typedef struct SListNode SListNode;
+//}SListNode;
 //
-//void SListPrint(SListNode* head);
+//void SListPrint(SListNode* pList);
 //
-//SListNode* SListPushBack(SListNode* head, SLTDataType x);
-//SListNode* SListPopBack(SListNode* head);
-//SListNode* SListPushFront(SListNode* head, SLTDataType x);
-//SListNode* SListPopFront(SListNode* head);
+//void SListPushBack(SListNode** ppList, SLTDataType x);
+//void SListPopBack(SListNode** ppList);
+//void SListPushFront(SListNode** ppList, SLTDataType x);
+//void SListPopFront(SListNode** ppList);
+//SListNode* SListFind(SListNode* pList, SLTDataType x);
+//void SListInsertAfter(SListNode* pos, SLTDataType x);
+//void SListEraseAfter(SListNode* pos);
+//void SListDestroy(SListNode** ppList);
