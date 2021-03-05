@@ -277,6 +277,45 @@
 //	*ppList = NULL;
 //}
 
+//带头循环双链表常见接口：
+ListNode* ListCreate()
+{
+	ListNode* head = (ListNode*)malloc(sizeof(ListNode));
+	head->next = head;
+	head->prev = head;
+	return head;
+}
+void ListPrint(ListNode* pList)
+{
+	ListNode* cur = pList->next;
+	while (cur != pList)
+	{
+		printf("%d ", cur->data);
+		cur = cur->next;
+	}
+	printf("\n");
+}
+void ListPushBack(ListNode* pList, LTDataType x)
+{
+	ListNode* newNode = (ListNode*)malloc(sizeof(ListNode));
+	newNode->data = x;
+	newNode->next = NULL;
+	newNode->prev = NULL;
+	ListNode* tail = pList->prev;
+	tail->next = newNode;
+	newNode->prev = tail;
+	newNode->next = pList;
+	pList->prev = newNode;
+}
+void ListPopBack(ListNode* pList)
+{
+	ListNode* tail = pList->prev;
+	ListNode* prev = tail->prev;
+	free(tail);
+	prev->next = pList;
+	pList->prev = prev;
+}
+
 ////函数实现原地移除数组中值为val的数（要求时间复杂度为O(N)，空间复杂度为O(1)）：
 //int removeElement(int* nums, int numsSize, int val)
 //{
@@ -550,7 +589,7 @@
 //	return newhead;
 //}
 
-////函数实现输出一个链表的倒数第k个结点：
+////函数实现输出一个单链表的倒数第k个结点：
 //#include<stdio.h>
 //typedef struct ListNode
 //{
@@ -576,7 +615,7 @@
 //	return slow;
 //}
 
-////函数实现合并两个有序链表：
+////函数实现合并两个有序单链表：
 //#include<stdio.h>
 //typedef struct ListNode
 //{
@@ -634,39 +673,183 @@
 //	return head;
 //}
 
-//函数实现以给定的值x将链表分割为两部分：
-#include<stdio.h>
-#include<stdlib.h>
-typedef struct ListNode
-{
-	int val;
-	struct ListNode* next;
-}ListNode;
-ListNode*  partition(ListNode* pHead, int x)
-{
-	ListNode* cur = pHead, *lesserHead, *lesserTail, *greaterHead, *greaterTail;
-	lesserHead = lesserTail = (ListNode*)malloc(sizeof(ListNode));
-	greaterHead = greaterTail = (ListNode*)malloc(sizeof(ListNode));
-	lesserTail->next = NULL;
-	greaterTail->next = NULL;
-	while (cur != NULL)
-	{
-		if (cur->val < x)
-		{
-			lesserTail->next = cur;
-			lesserTail = cur;
-		}
-		else
-		{
-			greaterTail->next = cur;
-			greaterTail = cur;
-		}
-		cur = cur->next;
-	}
-	lesserTail->next = greaterHead->next;
-	greaterTail->next = NULL;
-	ListNode* list = lesserHead->next;
-	free(lesserHead);
-	free(greaterHead);
-	return list;
-}
+////函数实现以给定的值x将单链表分割为两部分：
+//#include<stdio.h>
+//#include<stdlib.h>
+//typedef struct ListNode
+//{
+//	int val;
+//	struct ListNode* next;
+//}ListNode;
+//ListNode*  partition(ListNode* pHead, int x)
+//{
+//	ListNode* cur = pHead, *lesserHead, *lesserTail, *greaterHead, *greaterTail;
+//	lesserHead = lesserTail = (ListNode*)malloc(sizeof(ListNode));
+//	greaterHead = greaterTail = (ListNode*)malloc(sizeof(ListNode));
+//	lesserTail->next = NULL;
+//	greaterTail->next = NULL;
+//	while (cur != NULL)
+//	{
+//		if (cur->val < x)
+//		{
+//			lesserTail->next = cur;
+//			lesserTail = cur;
+//		}
+//		else
+//		{
+//			greaterTail->next = cur;
+//			greaterTail = cur;
+//		}
+//		cur = cur->next;
+//	}
+//	lesserTail->next = greaterHead->next;
+//	greaterTail->next = NULL;
+//	ListNode* list = lesserHead->next;
+//	free(lesserHead);
+//	free(greaterHead);
+//	return list;
+//}
+
+////函数实现判断单链表（长度小于等于900）是否是回文结构（要求时间复杂度为O(n),额外空间复杂度为O(1)）：
+//#include<stdio.h>
+//typedef struct ListNode
+//{
+//	int val;
+//	struct ListNode* next;
+//}ListNode;
+//bool chkPalindrome(ListNode* A)
+//{
+//	int a[900] = { 0 };
+//	int n = 0;
+//	while (A != NULL)
+//	{
+//		a[n++] = A->val;
+//		A = A->next;
+//	}
+//	int begin = 0, end = n - 1;
+//	while (begin < end)
+//	{
+//		if (a[begin] != a[end])
+//		{
+//			return false;
+//		}
+//		++begin;
+//		--end;
+//	}
+//	return true;
+//}
+
+////函数实现判断单链表是否是回文结构（要求时间复杂度为O(n),额外空间复杂度为O(1)）：
+//#include<stdio.h>
+//#include<stdlib.h>
+//typedef struct ListNode
+//{
+//	int val;
+//	struct ListNode* next;
+//}ListNode;
+//bool chkPalindrome(ListNode* A)
+//{
+//	ListNode*  copyA = NULL;
+//	ListNode* cur = A;
+//	while (cur != NULL)
+//	{
+//		ListNode* copyCur = (ListNode*)malloc(sizeof(ListNode));
+//		copyCur->val = cur->val;
+//		copyCur->next = NULL;
+//		copyCur->next = copyA;
+//		copyA = copyCur;
+//		cur = cur->next;
+//	}
+//	cur = A;
+//	ListNode* copycur = copyA;
+//	bool ret = true;
+//	while (cur != NULL)
+//	{
+//		if (cur->val != copycur->val)
+//		{
+//			ret = false;
+//			break;
+//		}
+//		cur = cur->next;
+//		copycur = copycur->next;
+//	}
+//	copycur = copyA;
+//	while (copycur != NULL)
+//	{
+//		ListNode* next = copycur->next;
+//		free(copycur);
+//		copycur = next;
+//	}
+//	return ret;
+//}
+
+////函数实现找到两个单链表的起始相交结点：
+//#include<stdio.h>
+//#include<math.h>
+//typedef struct ListNode
+//{
+//	int val;
+//	struct ListNode* next;
+//}ListNode;
+//ListNode* getIntersectionNode(ListNode* headA,ListNode* headB)
+//{
+//	if (headA == NULL || headB == NULL)
+//	{
+//		return NULL;
+//	}
+//	ListNode* curA = headA, *curB = headB;
+//	int lenA=0, lenB=0;
+//	while (curA->next)
+//	{
+//		lenA++;
+//		curA = curA->next;
+//	}
+//	while (curB->next)
+//	{
+//		lenB++;
+//		curB = curB->next;
+//	}
+//	if (curA != curB)
+//	{
+//		return NULL;
+//	}
+//	int gap = abs(lenA - lenB);
+//	ListNode* longList = headA, *shortList = headB;
+//	if (lenA < lenB)
+//	{
+//		longList = headB;
+//		shortList = headA;
+//	}
+//	while (gap--)
+//	{
+//		longList = longList->next;
+//	}
+//	while (longList != shortList)
+//	{
+//		longList = longList->next;
+//		shortList = shortList->next;
+//	}
+//	return longList;
+//}
+
+////函数实现判断单链表中是否有环：
+//#include<stdio.h>
+//typedef struct ListNode
+//{
+//	int val;
+//	struct ListNode* next;
+//}ListNode;
+//bool hasCycle(ListNode* head)
+//{
+//	ListNode* slow = head, *fast = head;
+//	while (fast != NULL && fast->next != NULL)
+//	{
+//		slow = slow->next;
+//		fast = fast->next->next;
+//		if (slow == fast)
+//		{
+//			return true;
+//		}
+//	}
+//	return false;
+//}

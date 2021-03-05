@@ -1,6 +1,6 @@
-#pragma once//（等价于#ifdef _数据结构_H_,#define _数据结构_H_,#endif (_数据结构_H_可省略)）
-
 ////顺序表头文件：
+//#pragma once//（等价于#ifdef _数据结构_H_,#define _数据结构_H_,#endif (_数据结构_H_可省略)）
+//
 //#include<stdio.h>
 //#include<assert.h>
 //#include<stdlib.h>
@@ -30,6 +30,8 @@
 //void SeqListBinaryFind(SeqList* ps,SLDataType x);
 
 ////不带头非循环单链表头文件：
+//#pragma once//（等价于#ifdef _数据结构_H_,#define _数据结构_H_,#endif (_数据结构_H_可省略)）
+//
 //#include<stdio.h>
 //#include<stdlib.h>
 //
@@ -50,3 +52,27 @@
 //void SListInsertAfter(SListNode* pos, SLTDataType x);
 //void SListEraseAfter(SListNode* pos);
 //void SListDestroy(SListNode** ppList);
+
+//带头循环双链表头文件：
+#pragma once//（等价于#ifdef _数据结构_H_,#define _数据结构_H_,#endif (_数据结构_H_可省略)）
+
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef int LTDataType;
+typedef struct ListNode
+{
+	struct ListNode* next;
+	struct ListNode* prev;
+	LTDataType data;
+}ListNode;
+
+ListNode* ListCreate();
+void ListPrint(ListNode* pList);
+void ListPushBack(ListNode* pList,LTDataType x);
+void ListPopBack(ListNode* pList);
+//void ListPushback(ListNode* pList);
+//void ListPushback(ListNode* pList);
+//void ListPushback(ListNode* pList);
+//void ListPushback(ListNode* pList);
+//void ListPushback(ListNode* pList);
