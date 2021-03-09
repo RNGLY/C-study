@@ -16,7 +16,6 @@
 //void SeqListInit(SeqList* ps);
 //void SeqListDestory(SeqList* ps);
 //void SeqListPrint(SeqList* ps);
-//
 //void SeqListCheckCapacity(SeqList* ps);
 //void SeqListPushback(SeqList* ps,SLDataType x);
 //void SeqListPopback(SeqList* ps);
@@ -53,26 +52,98 @@
 //void SListEraseAfter(SListNode* pos);
 //void SListDestroy(SListNode** ppList);
 
-//带头循环双链表头文件：
-#pragma once//（等价于#ifdef _数据结构_H_,#define _数据结构_H_,#endif (_数据结构_H_可省略)）
+////带头循环双链表头文件：
+//#pragma once
+//
+//#include<stdio.h>
+//#include<stdlib.h>
+//#include<assert.h>
+//
+//typedef int LTDataType;
+//typedef struct ListNode
+//{
+//	struct ListNode* next;
+//	struct ListNode* prev;
+//	LTDataType data;
+//}ListNode;
+//
+//ListNode* ListCreate();
+//void ListDestory(ListNode* plist);
+//void ListPrint(ListNode* pList);
+//void ListPushBack(ListNode* pList,LTDataType x);
+//void ListPopBack(ListNode* pList);
+//void ListPushFront(ListNode* pList, LTDataType x); 
+//void ListPopFront(ListNode* pList);
+//ListNode* ListFind(ListNode* pList, LTDataType x);
+//void ListInsert(ListNode* pos, LTDataType x);
+//void ListErase(ListNode* pos);
+
+////栈头文件：
+//#pragma once
+//
+//#include<stdio.h>
+//#include<stdlib.h>
+//#include<assert.h>
+//
+//typedef int STDataType;
+//typedef struct Stack
+//{
+//	STDataType* a;
+//	int top;
+//	int capacity;
+//}Stack;
+//
+//void StackInit(Stack* ps);
+//void StackPush(Stack* ps,STDataType data);
+//void StackPop(Stack* ps);
+//STDataType StackTop(Stack* ps);
+//int StackSize(Stack* ps);
+//int StackEmpty(Stack* ps);
+//void StackDestroy(Stack* ps);
+
+////队列头文件：
+//#pragma once
+//
+//#include<stdio.h>
+//#include<assert.h>
+//#include<stdlib.h>
+//
+//typedef int QDataType;
+//typedef struct QueueNode
+//{
+//	QDataType data;
+//	struct QueueNode* next;
+//}QueueNode;
+//typedef struct Queue
+//{
+//	struct QueueNode* front;
+//	struct QueueNode* back;
+//}Queue;
+//
+//void QueueInit(Queue* q);
+//void QueuePush(Queue* q, QDataType data);
+//void QueuePop(Queue* q);
+//QDataType QueueFront(Queue* q);
+//QDataType QueueBack(Queue* q);
+//int QueueSize(Queue* q);
+//int QueueEmpty(Queue* q);
+//void QueueDestroy(Queue* q);
+
+//小堆的头文件
+#pragma once
 
 #include<stdio.h>
 #include<stdlib.h>
 
-typedef int LTDataType;
-typedef struct ListNode
+typedef int HpDataType;
+typedef struct Heap
 {
-	struct ListNode* next;
-	struct ListNode* prev;
-	LTDataType data;
-}ListNode;
+	HpDataType* arr;
+	size_t size;
+	size_t capacity;
+}Heap;
 
-ListNode* ListCreate();
-void ListPrint(ListNode* pList);
-void ListPushBack(ListNode* pList,LTDataType x);
-void ListPopBack(ListNode* pList);
-//void ListPushback(ListNode* pList);
-//void ListPushback(ListNode* pList);
-//void ListPushback(ListNode* pList);
-//void ListPushback(ListNode* pList);
-//void ListPushback(ListNode* pList);
+Heap* HeapCreate(HpDataType* arr,size_t n);
+void HeapPush(Heap* hp,HpDataType x);
+void HeapPop(Heap* hp);
+HpDataType HeapTop(Heap* hp);

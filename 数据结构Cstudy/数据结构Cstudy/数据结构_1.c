@@ -168,7 +168,7 @@
 //	}
 //	printf("NULL\n");
 //}
-//SListNode* BuySListNode(SLTDataType x)
+//static SListNode* BuySListNode(SLTDataType x)
 //{
 //	SListNode* newNode = (SListNode*)malloc(sizeof(SListNode));
 //	newNode->_Data = x;
@@ -277,44 +277,275 @@
 //	*ppList = NULL;
 //}
 
-//带头循环双链表常见接口：
-ListNode* ListCreate()
+////带头循环双链表常见接口：
+//ListNode* ListCreate()
+//{
+//	ListNode* head = (ListNode*)malloc(sizeof(ListNode));
+//	head->next = head;
+//	head->prev = head;
+//	return head;
+//}
+//static ListNode* BuyListNode(LTDataType x)
+//{
+//	ListNode* newNode = (ListNode*)malloc(sizeof(ListNode));
+//	newNode->data = x;
+//	newNode->next = NULL;
+//	newNode->prev = NULL;
+//	return newNode;
+//}
+//void ListDestory(ListNode* plist)
+//{
+//	ListNode* cur = plist->next;
+//	while (cur != plist)
+//	{
+//		ListNode* next = cur->next;
+//		free(cur);
+//		cur = next;
+//	}
+//	free(plist);
+//	plist = NULL;//只改变形参，没有实际作用
+//}
+//void ListPrint(ListNode* pList)
+//{
+//	ListNode* cur = pList->next;
+//	while (cur != pList)
+//	{
+//		printf("%d ", cur->data);
+//		cur = cur->next;
+//	}
+//	printf("\n");
+//}
+//void ListPushBack(ListNode* pList, LTDataType x)
+//{
+//	//ListNode* newNode = BuyListNode(x);
+//	//ListNode* tail = pList->prev;
+//	//tail->next = newNode;
+//	//newNode->prev = tail;
+//	//newNode->next = pList;
+//	//pList->prev = newNode;
+//	ListInsert(pList, x);
+//}
+//void ListPopBack(ListNode* pList)
+//{
+//	//ListNode* tail = pList->prev;
+//	//ListNode* prev = tail->prev;
+//	//free(tail);
+//	//prev->next = pList;
+//	//pList->prev = prev;
+//	ListErase(pList->prev);
+//}
+//void ListPushFront(ListNode* pList, LTDataType x)
+//{
+//	//ListNode* newNode = BuyListNode(x);
+//	//ListNode* first = pList->next;
+//	//pList->next = newNode;
+//	//newNode->prev = pList;
+//	//newNode->next = first;
+//	//first->prev = newNode;
+//	ListInsert(pList->next, x);
+//}
+//void ListPopFront(ListNode* pList)
+//{
+//	//assert(pList->next != pList);
+//	//ListNode* first = pList->next;
+//	//ListNode* second = first->next;
+//	//free(first);
+//	//pList->next = second;
+//	//second->prev = pList;
+//	ListErase(pList->next);
+//}
+//ListNode* ListFind(ListNode* pList, LTDataType x)
+//{
+//	ListNode* cur = pList->next;
+//	while (cur != pList)
+//	{
+//		if (cur->data == x)
+//		{
+//			return cur;
+//		}
+//		cur = cur->next;
+//	}
+//	return NULL;
+//}
+//void ListInsert(ListNode* pos, LTDataType x)
+//{
+//	ListNode* prev = pos->prev;
+//	ListNode* newNode = BuyListNode(x);
+//	prev->next = newNode;
+//	newNode->prev = prev;
+//	newNode->next = pos;
+//	pos->prev = newNode;
+//}
+//void ListErase(ListNode* pos)
+//{
+//	ListNode* prev = pos->prev;
+//	ListNode* next = pos->next;
+//	free(pos);
+//	prev->next = next;
+//	next->prev = prev;
+//}
+
+////栈常见接口：
+//void StackInit(Stack* ps)
+//{
+//	ps->a = NULL;
+//	ps->top = 0;
+//	ps->capacity = 0;
+//}
+//void StackPush(Stack* ps, STDataType data)
+//{
+//	if (ps->top == ps->capacity)
+//	{
+//		size_t newcapacity = ps->capacity == 0 ? 4 : ps->capacity * 2;
+//		ps->a = (STDataType*)realloc(ps->a, newcapacity*sizeof(STDataType));
+//		ps->capacity = newcapacity;
+//	}
+//	ps->a[ps->top] = data;
+//	ps->top++;
+//}
+//void StackPop(Stack* ps)
+//{
+//	assert(ps && ps->top > 0);
+//	--ps->top;
+//}
+//STDataType StackTop(Stack* ps)
+//{
+//	assert(ps);
+//	return ps->a[ps->top - 1];
+//}
+//int StackSize(Stack* ps)
+//{
+//	assert(ps);
+//	return ps->top;
+//}
+//int StackEmpty(Stack* ps)
+//{
+//	assert(ps);
+//	return ps->top == 0 ? 1 : 0;//为空返回1，不为空返回0
+//}
+//void StackDestroy(Stack* ps)
+//{
+//	assert(ps);
+//	free(ps->a);
+//	ps->a = NULL;
+//	ps->top = ps->capacity = 0;
+//}
+
+////队列常见接口：
+//void QueueInit(Queue* q)
+//{
+//	assert(q);
+//	q->front = q->back = NULL;
+//}
+//void QueuePush(Queue* q, QDataType data)
+//{
+//	assert(q);
+//	QueueNode* newNode = (QueueNode*)malloc(sizeof(QueueNode));
+//	newNode->data = data;
+//	newNode->next = NULL;
+//	if (q->back == NULL)
+//	{
+//		q->front=q->back = newNode;
+//	}
+//	else
+//	{
+//		q->back->next = newNode;
+//		q->back = newNode;
+//	}
+//}
+//void QueuePop(Queue* q)
+//{
+//	assert(q);
+//	if (q->front->next == NULL)
+//	{
+//		free(q->front);
+//		q->front = q->back = NULL;
+//	}
+//	else
+//	{
+//		QueueNode* next = q->front->next;
+//		free(q->front);
+//		q->front = next;
+//	}
+//}
+//QDataType QueueFront(Queue* q)
+//{
+//	assert(q);
+//	return q->front->data;
+//}
+//QDataType QueueBack(Queue* q)
+//{
+//	assert(q);
+//	return q->back->data;
+//}
+//int QueueSize(Queue* q)
+//{
+//	int n = 0;
+//	QueueNode* cur = q->front;
+//	while (cur != NULL)
+//	{
+//		n++;
+//		cur = cur->next;
+//	}
+//	return n;
+//}
+//int QueueEmpty(Queue* q)
+//{
+//	return q->front == NULL ? 1 : 0;
+//}
+//void QueueDestroy(Queue* q)
+//{
+//	QueueNode* cur = q->front;
+//	while (cur)
+//	{
+//		QueueNode* next = cur->next;
+//		free(cur);
+//		cur = next;
+//	}
+//	q->front = q->back = NULL;
+//}
+
+//小堆的常见接口：
+void AdjustDown(HpDataType* arr,size_t n,int root)
 {
-	ListNode* head = (ListNode*)malloc(sizeof(ListNode));
-	head->next = head;
-	head->prev = head;
-	return head;
-}
-void ListPrint(ListNode* pList)
-{
-	ListNode* cur = pList->next;
-	while (cur != pList)
+	int parent = root;
+	int child = 2 * parent + 1;
+	while (child < n)
 	{
-		printf("%d ", cur->data);
-		cur = cur->next;
+		if ((child + 1) < n && arr[child + 1] < arr[child])
+		{
+			++child;
+		}
+		if (arr[parent] > arr[child])
+		{
+			HpDataType tmp = arr[parent];
+			arr[parent] = arr[child];
+			arr[child] = tmp;
+			parent = child;
+			child = parent * 2 + 1;
+		}
+		else
+		{
+			break;
+		}
 	}
-	printf("\n");
 }
-void ListPushBack(ListNode* pList, LTDataType x)
+Heap* HeapCreate(HpDataType* arr, size_t n)
 {
-	ListNode* newNode = (ListNode*)malloc(sizeof(ListNode));
-	newNode->data = x;
-	newNode->next = NULL;
-	newNode->prev = NULL;
-	ListNode* tail = pList->prev;
-	tail->next = newNode;
-	newNode->prev = tail;
-	newNode->next = pList;
-	pList->prev = newNode;
+	Heap* hp = (Heap*)malloc(sizeof(Heap));
+	hp->arr = (HpDataType*)malloc(sizeof(HpDataType)*n);
+	memcpy(hp->arr, arr, sizeof(HpDataType)*n);
+	hp->size = n;
+	hp->capacity = n;
+	for (int i = (n - 1 - 1) / 2; i >= 0; --i)
+	{
+		AdjustDown(hp->arr, hp->size, i);
+	}
+	return hp;
 }
-void ListPopBack(ListNode* pList)
-{
-	ListNode* tail = pList->prev;
-	ListNode* prev = tail->prev;
-	free(tail);
-	prev->next = pList;
-	pList->prev = prev;
-}
+void HeapPush(Heap* hp, HpDataType x);
+void HeapPop(Heap* hp);
+HpDataType HeapTop(Heap* hp);
 
 ////函数实现原地移除数组中值为val的数（要求时间复杂度为O(N)，空间复杂度为O(1)）：
 //int removeElement(int* nums, int numsSize, int val)
@@ -462,6 +693,7 @@ void ListPopBack(ListNode* pList)
 //}
 
 ////函数实现找出数组0到n中缺少的整数：
+//#include<stdio.h>
 //int missingNumber(int* nums,int numssize)
 //{
 //	int x = 0;
@@ -484,7 +716,7 @@ void ListPopBack(ListNode* pList)
 //	return 0;
 //}
 
-////函数实现返回单链表中间结点，如果有两个结点返回第二个结点（要求只能遍历链表一次）
+////函数实现返回单链表中间结点，如果有两个结点返回第二个结点（要求只能遍历链表一次）：
 //#include<stdio.h>
 //typedef struct ListNode
 //{
@@ -502,7 +734,7 @@ void ListPopBack(ListNode* pList)
 //	return slow;
 //}
 
-////函数实现删除单链表中所有值为val的结点，然后返回链表（要求只能遍历链表一次）
+////函数实现删除单链表中所有值为val的结点，然后返回链表（要求只能遍历链表一次）：
 //#include<stdio.h>
 //typedef struct ListNode
 //{
@@ -569,7 +801,6 @@ void ListPopBack(ListNode* pList)
 
 ////函数实现反转单链表（取结点头插到新链表）：
 //#include<stdio.h>
-//#include<stdlib.h>
 //typedef struct ListNode
 //{
 //	int val;
@@ -717,7 +948,7 @@ void ListPopBack(ListNode* pList)
 //	int val;
 //	struct ListNode* next;
 //}ListNode;
-//bool chkPalindrome(ListNode* A)
+//int chkPalindrome(ListNode* A)
 //{
 //	int a[900] = { 0 };
 //	int n = 0;
@@ -731,12 +962,12 @@ void ListPopBack(ListNode* pList)
 //	{
 //		if (a[begin] != a[end])
 //		{
-//			return false;
+//			return 0;
 //		}
 //		++begin;
 //		--end;
 //	}
-//	return true;
+//	return 1;
 //}
 
 ////函数实现判断单链表是否是回文结构（要求时间复杂度为O(n),额外空间复杂度为O(1)）：
@@ -747,7 +978,7 @@ void ListPopBack(ListNode* pList)
 //	int val;
 //	struct ListNode* next;
 //}ListNode;
-//bool chkPalindrome(ListNode* A)
+//int chkPalindrome(ListNode* A)
 //{
 //	ListNode*  copyA = NULL;
 //	ListNode* cur = A;
@@ -762,12 +993,12 @@ void ListPopBack(ListNode* pList)
 //	}
 //	cur = A;
 //	ListNode* copycur = copyA;
-//	bool ret = true;
+//	bool ret = 1;
 //	while (cur != NULL)
 //	{
 //		if (cur->val != copycur->val)
 //		{
-//			ret = false;
+//			ret = 0;
 //			break;
 //		}
 //		cur = cur->next;
@@ -839,7 +1070,7 @@ void ListPopBack(ListNode* pList)
 //	int val;
 //	struct ListNode* next;
 //}ListNode;
-//bool hasCycle(ListNode* head)
+//int hasCycle(ListNode* head)
 //{
 //	ListNode* slow = head, *fast = head;
 //	while (fast != NULL && fast->next != NULL)
@@ -848,8 +1079,632 @@ void ListPopBack(ListNode* pList)
 //		fast = fast->next->next;
 //		if (slow == fast)
 //		{
-//			return true;
+//			return 1;
 //		}
 //	}
-//	return false;
+//	return 0;
+//}
+
+////函数实现判断单链表中是否有环,有环则返回环的第一个结点，无环则返回空（公式证明：L=N*C-X）：
+//#include<stdio.h>
+//typedef struct ListNode
+//{
+//	int val;
+//	struct ListNode* next;
+//}ListNode;
+//ListNode* detectCycle(ListNode* head)
+//{
+//	ListNode* slow = head, *fast = head;
+//	while (fast != NULL && fast->next != NULL)
+//	{
+//		slow = slow->next;
+//		fast = fast->next->next;
+//		if (slow == fast)
+//		{
+//			ListNode* meet = slow;
+//			while (1)
+//			{
+//				if (meet = head)
+//				{
+//					return meet;
+//				}
+//				meet = meet->next;
+//				head = head->next;
+//			}
+//		}
+//	}
+//}
+
+////函数实现增加了随机指针的链表的深度拷贝：
+//#include<stdio.h>
+//#include<stdlib.h>
+//class Node
+//{
+//public:
+//	int val;
+//	Node* next;
+//	Node* random;
+//
+//	Node(int _val)
+//	{
+//		val = _val;
+//		next = NULL;
+//		random = NULL;
+//	}
+//};
+//class Solution
+//{
+//public:
+//	Node* copyRandmoList(Node* head)
+//	{
+//		Node* cur = head;
+//		while (cur)
+//		{
+//			Node* next = cur->next;
+//			Node* copyNode = (Node*)malloc(sizeof(Node));
+//			copyNode->val = cur->val;
+//			copyNode->next = NULL;
+//			copyNode->random = NULL;
+//			cur->next = copyNode;
+//			copyNode->next = next;
+//			cur = next;
+//		}
+//		cur = head;
+//		while (cur)
+//		{
+//			Node* copyNode = cur->next;
+//			if (cur->random)
+//			{
+//				copyNode->random = cur->random->next;
+//			}
+//			else
+//			{
+//				copyNode->random = NULL;
+//			}
+//			cur = copyNode->next;//cur=cur->next->next;
+//		}
+//		Node* copyHead=NULL, *copyTail=NULL;
+//		cur = head;
+//		while (cur)
+//		{
+//			Node* copyNode = cur->next;
+//			Node* next = copyNode->next;
+//			if (copyTail == NULL)
+//			{
+//				copyHead = copyTail = copyNode;
+//			}
+//			else
+//			{
+//				copyTail->next = copyNode;
+//				copyTail = copyNode;
+//			}
+//			cur->next = next;
+//			cur = next;
+//		}
+//		return copyHead;
+//	}
+//};
+
+////函数实现对单链表进行插入排序：
+//#include<stdio.h>
+//#include<stdlib.h>
+//typedef struct ListNode
+//{
+//	int val;
+//	struct ListNode* next;
+//}ListNode;
+//struct ListNode* insertionSortList(struct ListNode* head)
+//{
+//	if (head == NULL || head->next == NULL)
+//	{
+//		return head;
+//	}
+//	ListNode* sortHead = (ListNode*)malloc(sizeof(ListNode));
+//	sortHead->next = head;
+//	sortHead->next->next = NULL;
+//	head = head->next;
+//	while (head)
+//	{
+//		ListNode* headNext = head->next;
+//		ListNode* prev = sortHead;
+//		ListNode* cur = sortHead->next;
+//		while (cur)
+//		{
+//			if (cur->val > head->val)
+//			{
+//				prev->next = head;
+//				head->next = cur;
+//				break;
+//			}
+//			else
+//			{
+//				prev = cur;
+//				cur = cur->next;
+//			}
+//			if (cur == NULL)
+//			{
+//				prev->next = head;
+//				head->next = NULL;
+//			}
+//		}
+//		head = headNext;
+//	}
+//	return sortHead->next;
+//}
+
+////函数实现判断括号字符串是否是有效的：
+//#include<stdio.h>
+//#include<stdlib.h>
+//#include<assert.h>
+//
+//typedef char STDataType;
+//typedef struct Stack
+//{
+//	STDataType* a;
+//	int top;
+//	int capacity;
+//}Stack;
+//
+//void StackInit(Stack* ps)
+//{
+//	ps->a = NULL;
+//	ps->top = 0;
+//	ps->capacity = 0;
+//}
+//void StackPush(Stack* ps, STDataType data)
+//{
+//	if (ps->top == ps->capacity)
+//	{
+//		size_t newcapacity = ps->capacity == 0 ? 4 : ps->capacity * 2;
+//		ps->a = (STDataType*)realloc(ps->a, newcapacity*sizeof(STDataType));
+//		ps->capacity = newcapacity;
+//	}
+//	ps->a[ps->top] = data;
+//	ps->top++;
+//}
+//void StackPop(Stack* ps)
+//{
+//	assert(ps && ps->top > 0);
+//	--ps->top;
+//}
+//STDataType StackTop(Stack* ps)
+//{
+//	assert(ps);
+//	return ps->a[ps->top - 1];
+//}
+//int StackSize(Stack* ps)
+//{
+//	assert(ps);
+//	return ps->top;
+//}
+//int StackEmpty(Stack* ps)
+//{
+//	assert(ps);
+//	return ps->top == 0 ? 1 : 0;//为空返回1，不为空返回0
+//}
+//void StackDestroy(Stack* ps)
+//{
+//	assert(ps);
+//	free(ps->a);
+//	ps->a = NULL;
+//	ps->top = ps->capacity = 0;
+//}
+//int isValid(char* s)
+//{
+//	Stack st;
+//	StackInit(&st);
+//	char* symbols[3] = { "{}", "[]", "()" };
+//	while (*s)
+//	{
+//		if (*s == '{' || *s == '[' || *s == '(')
+//		{
+//			StackPush(&st, *s);
+//		}
+//		else
+//		{
+//			if (StackEmpty(&st))
+//			{
+//				return 0;
+//			}
+//			char top = StackTop(&st);
+//			StackPop(&st);
+//			for (int i = 0; i < 3; i++)
+//			{
+//				if (*s == symbols[i][1] && top!=symbols[i][0])
+//				{
+//					return 0;
+//				}
+//			}
+//		}
+//		//else if (*s == '}')
+//		//{
+//		//	if (StackEmpty(&st))
+//		//	{
+//		//		return 0;
+//		//	}
+//		//	char top = StackTop(&st);
+//		//	StackPop(&st);
+//		//	if (top != '{')
+//		//	{
+//		//		return 0;
+//		//	}
+//		//}
+//		//else if (*s == ']')
+//		//{
+//		//	if (StackEmpty(&st))
+//		//	{
+//		//		return 0;
+//		//	}
+//		//	char top = StackTop(&st);
+//		//	StackPop(&st);
+//		//	if (top != '[')
+//		//	{
+//		//		return 0;
+//		//	}
+//		//}
+//		//else if (*s == '(')
+//		//{
+//		//	if (StackEmpty(&st))
+//		//	{
+//		//		return 0;
+//		//	}
+//		//	char top = StackTop(&st);
+//		//	StackPop(&st);
+//		//	if (top != ')')
+//		//	{
+//		//		return 0;
+//		//	}
+//		//}
+//		++s;
+//	}
+//	int ret = StackEmpty(&st);
+//	StackDestroy(&st);
+//	return ret;
+//}
+
+////函数实现用队列实现栈：
+//#include<stdio.h>
+//#include<assert.h>
+//#include<stdlib.h>
+//
+//typedef int QDataType;
+//typedef struct QueueNode
+//{
+//	QDataType data;
+//	struct QueueNode* next;
+//}QueueNode;
+//typedef struct Queue
+//{
+//	struct QueueNode* front;
+//	struct QueueNode* back;
+//}Queue;
+//void QueueInit(Queue* q)
+//{
+//	assert(q);
+//	q->front = q->back = NULL;
+//}
+//void QueuePush(Queue* q, QDataType data)
+//{
+//	assert(q);
+//	QueueNode* newNode = (QueueNode*)malloc(sizeof(QueueNode));
+//	newNode->data = data;
+//	newNode->next = NULL;
+//	if (q->back == NULL)
+//	{
+//		q->front=q->back = newNode;
+//	}
+//	else
+//	{
+//		q->back->next = newNode;
+//		q->back = newNode;
+//	}
+//}
+//void QueuePop(Queue* q)
+//{
+//	assert(q);
+//	if (q->front->next == NULL)
+//	{
+//		free(q->front);
+//		q->front = q->back = NULL;
+//	}
+//	else
+//	{
+//		QueueNode* next = q->front->next;
+//		free(q->front);
+//		q->front = next;
+//	}
+//}
+//QDataType QueueFront(Queue* q)
+//{
+//	assert(q);
+//	return q->front->data;
+//}
+//QDataType QueueBack(Queue* q)
+//{
+//	assert(q);
+//	return q->back->data;
+//}
+//int QueueSize(Queue* q)
+//{
+//	int n = 0;
+//	QueueNode* cur = q->front;
+//	while (cur != NULL)
+//	{
+//		n++;
+//		cur = cur->next;
+//	}
+//	return n;
+//}
+//int QueueEmpty(Queue* q)
+//{
+//	return q->front == NULL ? 1 : 0;
+//}
+//void QueueDestroy(Queue* q)
+//{
+//	QueueNode* cur = q->front;
+//	while (cur)
+//	{
+//		QueueNode* next = cur->next;
+//		free(cur);
+//		cur = next;
+//	}
+//	q->front = q->back = NULL;
+//}
+//typedef struct
+//{
+//	Queue q1;
+//	Queue q2;
+//}MyStack;
+//MyStack* myStackCreate()
+//{
+//	MyStack* st = (MyStack*)malloc(sizeof(MyStack));
+//	QueueInit(&st->q1);
+//	QueueInit(&st->q2);
+//	return st;
+//}
+//void myStackPush(MyStack* obj, int x)
+//{
+//	if (!QueueEmpty(&obj->q1))
+//	{
+//		QueuePush(&obj->q1,x);
+//	}
+//	else
+//	{
+//		QueuePush(&obj->q2, x);
+//	}
+//}
+//int myStackPop(MyStack* obj)
+//{
+//	Queue* pemptyQ = &obj->q1;
+//	Queue* pnoemptyQ = &obj->q2;
+//	if (!QueueEmpty(&obj->q1))
+//	{
+//		pemptyQ = &obj->q2;
+//		pnoemptyQ = &obj->q1;
+//	}
+//	while (QueueSize(pemptyQ) > 1)
+//	{
+//		QueuePush(pemptyQ, QueueFront(pnoemptyQ));
+//		QueuePop(pnoemptyQ);
+//	}
+//	int top = QueueBack(pnoemptyQ);
+//	QueuePop(pnoemptyQ);
+//	return top;
+//}
+//int myStackTop(MyStack* obj)
+//{
+//	if (!QueueEmpty(&obj->q1))
+//	{
+//		return QueueBack(&obj->q1);
+//	}
+//	else
+//	{
+//		return QueueBack(&obj->q2);
+//	}
+//}
+//bool myStackEmpty(MyStack* obj)
+//{
+//	return QueueEmpty(&obj->q1) && QueueEmpty(&obj->q2);
+//}
+//void myStackFree(MyStack* obj)
+//{
+//	QueueDestroy(&obj->q1);
+//	QueueDestroy(&obj->q2);
+//	free(obj);
+//}
+
+////函数实现用栈实现队列：
+//#include<stdio.h>
+//#include<stdlib.h>
+//#include<assert.h>
+//
+//typedef int STDataType;
+//typedef struct Stack
+//{
+//	STDataType* a;
+//	int top;
+//	int capacity;
+//}Stack;
+//void StackInit(Stack* ps)
+//{
+//	ps->a = NULL;
+//	ps->top = 0;
+//	ps->capacity = 0;
+//}
+//void StackPush(Stack* ps, STDataType data)
+//{
+//	if (ps->top == ps->capacity)
+//	{
+//		size_t newcapacity = ps->capacity == 0 ? 4 : ps->capacity * 2;
+//		ps->a = (STDataType*)realloc(ps->a, newcapacity*sizeof(STDataType));
+//		ps->capacity = newcapacity;
+//	}
+//	ps->a[ps->top] = data;
+//	ps->top++;
+//}
+//void StackPop(Stack* ps)
+//{
+//	assert(ps && ps->top > 0);
+//	--ps->top;
+//}
+//STDataType StackTop(Stack* ps)
+//{
+//	assert(ps);
+//	return ps->a[ps->top - 1];
+//}
+//int StackSize(Stack* ps)
+//{
+//	assert(ps);
+//	return ps->top;
+//}
+//int StackEmpty(Stack* ps)
+//{
+//	assert(ps);
+//	return ps->top == 0 ? 1 : 0;//为空返回1，不为空返回0
+//}
+//void StackDestroy(Stack* ps)
+//{
+//	assert(ps);
+//	free(ps->a);
+//	ps->a = NULL;
+//	ps->top = ps->capacity = 0;
+//}
+//typedef struct
+//{
+//	Stack pushst;
+//	Stack popst;
+//}MyQueue;
+//MyQueue* myQueueCreate()
+//{
+//	MyQueue* q = (MyQueue*)malloc(sizeof(MyQueue));
+//	StackInit(&q->pushst);
+//	StackInit(&q->popst);
+//	return q;
+//}
+//void myQueuePush(MyQueue* obj, int x)
+//{
+//	StackPush(&obj->pushst,x);
+//}
+//int myQueuePop(MyQueue* obj)
+//{
+//	if (StackEmpty(&obj->popst))
+//	{
+//		while (StackEmpty(&obj->pushst))
+//		{
+//			StackPush(&obj->popst, StackTop(&obj->pushst));
+//			StackPop(&obj->pushst);
+//		}
+//	}
+//	int front = StackTop(&obj->popst);
+//	StackPop(&obj->popst);
+//	return front;
+//}
+//int myQueuePeek(MyQueue* obj)
+//{
+//	if (StackEmpty(&obj->popst))
+//	{
+//		while (StackEmpty(&obj->pushst))
+//		{
+//			StackPush(&obj->popst, StackTop(&obj->pushst));
+//			StackPop(&obj->pushst);
+//		}
+//	}
+//	return StackTop(&obj->popst);
+//}
+//bool myQueueEmpty(MyQueue* obj)
+//{
+//	return StackEmpty(&obj->pushst) && StackEmpty(&obj->popst);
+//}
+//void myQueueFree(MyQueue* obj)
+//{
+//	StackDestroy(&obj->pushst);
+//	StackDestroy(&obj->popst);
+//	free(obj);
+//}
+
+////函数实现循环队列：
+//#include<stdlib.h>
+//typedef struct
+//{
+//	int* arr;
+//	int size;
+//	int front;
+//	int back;
+//}MyCircularQueue;
+//
+//bool myCircularQueueIsEmpty(MyCircularQueue* obj);
+//bool myCircularQueueIsFull(MyCircularQueue* obj);
+//
+//MyCircularQueue* myCircularQueueCreate(int k)
+//{
+//	MyCircularQueue* cq = (MyCircularQueue*)malloc(sizeof(MyCircularQueue));
+//	cq->arr = (int*)malloc(sizeof(int)*(k+1));
+//	cq->size = k+1;
+//	cq->front = cq->back = 0;
+//	return cq;
+//}
+//bool myCircularQueueEnQueue(MyCircularQueue* obj, int value)
+//{
+//	if (myCircularQueueIsFull(obj))
+//	{
+//		return false;
+//	}
+//	obj->arr[obj->back] = value;
+//	obj->back++;
+//	//obj->back %= obj->size;
+//	if (obj->back == obj->size)
+//	{
+//		obj->back = 0;
+//	}
+//	return true;
+//}
+//bool myCircularQueueDeQueue(MyCircularQueue* obj)
+//{
+//	if (myCircularQueueIsEmpty(obj))
+//	{
+//		return false;
+//	}
+//	obj->front++;
+//	//obj->front %= obj->size;
+//	if (obj->front == obj->size)
+//	{
+//		obj->front = 0;
+//	}
+//	return true;
+//}
+//int myCircularQueueFront(MyCircularQueue* obj)
+//{
+//	if (myCircularQueueIsEmpty(obj))
+//	{
+//		return -1;
+//	}
+//	return obj->arr[obj->front];
+//}
+//int myCircularQueueBack(MyCircularQueue* obj)
+//{
+//	if (myCircularQueueIsEmpty(obj))
+//	{
+//		return -1;
+//	}
+//	int prevBcak = obj->back - 1;
+//	if (obj->back == 0)
+//	{
+//		prevBcak = obj->size - 1;
+//	}
+//	return obj->arr[prevBcak];
+//}
+//bool myCircularQueueIsEmpty(MyCircularQueue* obj)
+//{
+//	return obj->front == obj->back;
+//}
+//bool myCircularQueueIsFull(MyCircularQueue* obj)
+//{
+//	int backNext = obj->back + 1;
+//	backNext %= obj->size;
+//	return backNext == obj->front;
+//}
+//void myCircularQueueFree(MyCircularQueue* obj)
+//{
+//	free(obj->arr);
+//	free(obj);
 //}
