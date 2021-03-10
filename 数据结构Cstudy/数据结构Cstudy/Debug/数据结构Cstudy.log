@@ -1,14 +1,15 @@
-﻿生成启动时间为 2021/3/9 0:26:31。
+﻿生成启动时间为 2021/3/11 2:33:46。
      1>项目“F:\vs2013\数据结构Cstudy\数据结构Cstudy\数据结构Cstudy.vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
-         F:\MSVC2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt "数据结构_2.c"
+         F:\MSVC2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt "数据结构_1.c" "数据结构_2.c"
          数据结构_2.c
-       Link:
-         F:\MSVC2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\vs2013\数据结构Cstudy\Debug\数据结构Cstudy.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"F:\vs2013\数据结构Cstudy\Debug\数据结构Cstudy.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\vs2013\数据结构Cstudy\Debug\数据结构Cstudy.lib" /MACHINE:X86 "Debug\数据结构_1.obj"
-         "Debug\数据结构_2.obj"
-         数据结构Cstudy.vcxproj -> F:\vs2013\数据结构Cstudy\Debug\数据结构Cstudy.exe
-     1>已完成生成项目“F:\vs2013\数据结构Cstudy\数据结构Cstudy\数据结构Cstudy.vcxproj”(Build 个目标)的操作。
+         数据结构_1.c
+     1>f:\vs2013\数据结构cstudy\数据结构cstudy\数据结构_1.c(1806): error C2061: 语法错误: 标识符“isUnivalTree”
+     1>f:\vs2013\数据结构cstudy\数据结构cstudy\数据结构_1.c(1806): error C2059: 语法错误:“;”
+     1>f:\vs2013\数据结构cstudy\数据结构cstudy\数据结构_1.c(1806): error C2059: 语法错误:“类型”
+         正在生成代码...
+     1>已完成生成项目“F:\vs2013\数据结构Cstudy\数据结构Cstudy\数据结构Cstudy.vcxproj”(Build 个目标)的操作 - 失败。
 
-生成成功。
+生成失败。
 
-已用时间 00:00:00.52
+已用时间 00:00:01.31

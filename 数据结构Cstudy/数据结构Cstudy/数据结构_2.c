@@ -175,4 +175,63 @@
 //	return 0;
 //}
 
-//小堆常见接口测试：
+////小堆常见接口测试：
+//void TestHeap()
+//{
+//	int arr[10] = { 27, 15, 19, 34, 65, 37, 25, 49, 28, 18 };
+//	Heap* hp;
+//	hp=HeapCreate(arr, 10);
+//	HeapPrint(hp);
+//	HeapPush(hp, 9);
+//	HeapPrint(hp);
+//	HeapPush(hp, 99);
+//	HeapPrint(hp);
+//	HeapPush(hp, 0);
+//	HeapPrint(hp);
+//	HeapPop(hp);
+//	HeapPrint(hp);
+//	HeapPop(hp);
+//	HeapPrint(hp);
+//	HeapSort(hp, hp->size);
+//	HeapPrint(hp);
+//	//while (!HeapEmpty(hp))
+//	//{
+//	//	printf("%d ", HeapTop(hp));
+//	//	HeapPop(hp);
+//	//}
+//	HeapDestroy(hp);
+//}
+//void TestTopK()
+//{
+//	int n = 10000;
+//	int* arr = (int*)malloc(sizeof(int)*n);
+//	srand((unsigned int)time(NULL));
+//	for (size_t i = 0; i < n; ++i)
+//	{
+//		arr[i] = rand() % 1000000;
+//	}
+//	arr[15] = 1000000 + 1;
+//	arr[1231] = 1000000 + 2;
+//	arr[531] = 1000000 + 3;
+//	arr[5121] = 1000000 + 4;
+//	arr[115] = 1000000 + 5;
+//	arr[2335] = 1000000 + 6;
+//	arr[9999] = 1000000 + 7;
+//	arr[760] = 1000000 + 8;
+//	arr[423] = 1000000 + 9;
+//	arr[3144] = 1000000 + 10;
+//	PrintTopK(arr, n, 10);
+//}
+//int main()
+//{
+//	//TestHeap();
+//	TestTopK();
+//	return 0;
+//}
+
+////二叉树常见接口测试：
+//int main()
+//{
+//
+//	return 0;
+//}

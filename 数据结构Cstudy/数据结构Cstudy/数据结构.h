@@ -129,21 +129,40 @@
 //int QueueEmpty(Queue* q);
 //void QueueDestroy(Queue* q);
 
-//小堆的头文件
-#pragma once
+////小堆的头文件
+//#pragma once
+//
+//#include<stdio.h>
+//#include<stdlib.h>
+//#include<string.h>
+//#include<time.h>
+//
+//typedef int HpDataType;
+//typedef struct Heap
+//{
+//	HpDataType* arr;
+//	size_t size;
+//	size_t capacity;
+//}Heap;
+//
+//Heap* HeapCreate(HpDataType* arr,size_t n);
+//void HeapDestroy(Heap* hp);
+//void HeapPrint(Heap* hp);
+//void HeapPush(Heap* hp,HpDataType x);
+//void HeapPop(Heap* hp);
+//HpDataType HeapTop(Heap* hp);
+//int HeapEmpty(Heap* hp);
+//void HeapSort(Heap* hp,size_t n);
+//void PrintTopK(HpDataType* arr,int n,int k);
 
-#include<stdio.h>
-#include<stdlib.h>
+////二叉树头文件：
+//#pragma once
+//
+//typedef int BTDataType;
+//typedef struct BinaryTree
+//{
+//	struct BinaryTree* left;
+//	struct BinaryTree* right;
+//	BTDataType data;
+//}BinaryTree;
 
-typedef int HpDataType;
-typedef struct Heap
-{
-	HpDataType* arr;
-	size_t size;
-	size_t capacity;
-}Heap;
-
-Heap* HeapCreate(HpDataType* arr,size_t n);
-void HeapPush(Heap* hp,HpDataType x);
-void HeapPop(Heap* hp);
-HpDataType HeapTop(Heap* hp);

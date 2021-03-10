@@ -505,47 +505,134 @@
 //	q->front = q->back = NULL;
 //}
 
-//小堆的常见接口：
-void AdjustDown(HpDataType* arr,size_t n,int root)
-{
-	int parent = root;
-	int child = 2 * parent + 1;
-	while (child < n)
-	{
-		if ((child + 1) < n && arr[child + 1] < arr[child])
-		{
-			++child;
-		}
-		if (arr[parent] > arr[child])
-		{
-			HpDataType tmp = arr[parent];
-			arr[parent] = arr[child];
-			arr[child] = tmp;
-			parent = child;
-			child = parent * 2 + 1;
-		}
-		else
-		{
-			break;
-		}
-	}
-}
-Heap* HeapCreate(HpDataType* arr, size_t n)
-{
-	Heap* hp = (Heap*)malloc(sizeof(Heap));
-	hp->arr = (HpDataType*)malloc(sizeof(HpDataType)*n);
-	memcpy(hp->arr, arr, sizeof(HpDataType)*n);
-	hp->size = n;
-	hp->capacity = n;
-	for (int i = (n - 1 - 1) / 2; i >= 0; --i)
-	{
-		AdjustDown(hp->arr, hp->size, i);
-	}
-	return hp;
-}
-void HeapPush(Heap* hp, HpDataType x);
-void HeapPop(Heap* hp);
-HpDataType HeapTop(Heap* hp);
+////小堆的常见接口：
+//void Swap(HpDataType* a, HpDataType* b)
+//{
+//	HpDataType tmp = *a;
+//	*a = *b;
+//	*b = tmp;
+//}
+//void AdjustDown(HpDataType* arr,size_t n,int root)
+//{
+//	int parent = root;
+//	int child = 2 * parent + 1;
+//	while (child < n)
+//	{
+//		if ((child + 1) < n && arr[child + 1] < arr[child])
+//		{
+//			++child;
+//		}
+//		if (arr[parent] > arr[child])
+//		{
+//			Swap(&arr[child], &arr[parent]);
+//			parent = child;
+//			child = parent * 2 + 1;
+//		}
+//		else
+//		{
+//			break;
+//		}
+//	}
+//}
+//void AdjistUp(HpDataType* arr,int child)
+//{
+//	int parent = (child - 1) / 2;
+//	while (child > 0)
+//	{
+//		if (arr[child] < arr[parent])
+//		{
+//			Swap(&arr[child], &arr[parent]);
+//			child = parent;
+//			parent = (child - 1) / 2;
+//		}
+//		else
+//		{
+//			break;
+//		}
+//	}
+//}
+//Heap* HeapCreate(HpDataType* arr, size_t n)
+//{
+//	Heap* hp = (Heap*)malloc(sizeof(Heap));
+//	hp->arr = (HpDataType*)malloc(sizeof(HpDataType)*n);
+//	memcpy(hp->arr, arr, sizeof(HpDataType)*n);
+//	hp->size = n;
+//	hp->capacity = n;
+//	for (int i = (n - 1 - 1) / 2; i >= 0; --i)
+//	{
+//		AdjustDown(hp->arr, hp->size, i);
+//	}
+//	return hp;
+//}
+//void HeapDestroy(Heap* hp)
+//{
+//	free(hp->arr);
+//	hp->size = hp->capacity = 0;
+//	hp->arr = NULL;
+//	free(hp);
+//	hp = NULL;
+//}
+//void HeapPrint(Heap* hp)
+//{
+//	for (int i = 0; i < hp->size; ++i)
+//	{
+//		printf("%-2d ", hp->arr[i]);
+//	}
+//	printf("\n");
+//}
+//void HeapPush(Heap* hp, HpDataType x)
+//{
+//	if (hp->size == hp->capacity)
+//	{
+//		size_t newcapacity = hp->capacity * 2;
+//		hp->arr = (HpDataType*)realloc(hp->arr,sizeof(HpDataType)*newcapacity);
+//		hp->capacity = newcapacity;
+//	}
+//	hp->arr[hp->size] = x;
+//	hp->size++;
+//	AdjistUp(hp->arr,hp->size-1);
+//}
+//void HeapPop(Heap* hp)
+//{
+//	Swap(&hp->arr[0], &hp->arr[hp->size - 1]);
+//	--hp->size;
+//	AdjustDown(hp->arr, hp->size, 0);
+//}
+//HpDataType HeapTop(Heap* hp)
+//{
+//	return hp->arr[0];
+//}
+//int HeapEmpty(Heap* hp)
+//{
+//	return hp->size == 0 ? 1 : 0;
+//}
+//void HeapSort(Heap* hp, size_t n)
+//{
+//	size_t end = n - 1;
+//	while (end > 0)
+//	{
+//		Swap(&hp->arr[0], &hp->arr[end]);
+//		AdjustDown(hp->arr, end, 0);
+//		--end;
+//	}
+//}
+//void PrintTopK(HpDataType* arr, int n, int k)
+//{
+//	Heap* hp;
+//	hp = HeapCreate(arr, k);
+//	for (int i = k; i < n; ++i)
+//	{
+//		if (HeapTop(hp) < arr[i])
+//		{
+//			HeapPop(hp);
+//			HeapPush(hp, arr[i]);
+//		}
+//	}
+//	HeapPrint(hp);
+//}
+
+//二叉树常见接口：
+
 
 ////函数实现原地移除数组中值为val的数（要求时间复杂度为O(N)，空间复杂度为O(1)）：
 //int removeElement(int* nums, int numsSize, int val)
@@ -1707,4 +1794,29 @@ HpDataType HeapTop(Heap* hp);
 //{
 //	free(obj->arr);
 //	free(obj);
+//}
+
+////函数实现判断二叉树是否是单值二叉树：
+//#include<stdio.h>
+//typedef struct TreeNode
+//{
+//	int val;
+//	struct TreeNode* left;
+//	struct TreeNode* right;
+//}TreeNode;
+//bool isUnivalTree(struct TreeNode* root)
+//{
+//	if (root == NULL)
+//	{
+//		return true;
+//	}
+//	if (root->left && root->left->val != root->val)
+//	{
+//		return true;
+//	}
+//	if (root->right && root->right->val != root->val)
+//	{
+//		return true;
+//	}
+//	return isUnivalTree(root->left) && isUnivalTree(root->right);
 //}
