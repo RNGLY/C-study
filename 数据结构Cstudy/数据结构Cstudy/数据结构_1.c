@@ -631,8 +631,245 @@
 //	HeapPrint(hp);
 //}
 
-//二叉树常见接口：
-
+////二叉树常见接口：
+//BinaryTree* BinaryTreeCreate(BTDataType* arr, BTDataType n, int* pi)
+//{
+//	if (arr[*pi] == n)
+//	{
+//		return NULL;
+//	}
+//	else
+//	{
+//		BinaryTree* root = (BinaryTree*)malloc(sizeof(BinaryTree));
+//		root->data = arr[*pi];
+//		++(*pi);
+//		root->left = BinaryTreeCreate(arr, n, pi);
+//		++(*pi);
+//		root->right = BinaryTreeCreate(arr, n, pi);
+//		return root;
+//	}
+//}
+//void BinaryTreeDestory(BinaryTree* root)
+//{
+//	if (root == NULL)
+//	{
+//		return;
+//	}
+//	BinaryTreeDestory(root->left);
+//	BinaryTreeDestory(root->right);
+//	free(root);
+//}
+//int BinaryTreeSize(BinaryTree* root)
+//{
+//	if (root == NULL)
+//	{
+//		return 0;
+//	}
+//	return 1+BinaryTreeSize(root->left) + BinaryTreeSize(root->right);
+//}
+//int BinaryTreeLeafSize(BinaryTree* root)
+//{
+//	if (root == NULL)
+//	{
+//		return 0;
+//	}
+//	if (root->left == NULL && root->right == NULL)
+//	{
+//		return 1;
+//	}
+//	return BinaryTreeLeafSize(root->left) + BinaryTreeLeafSize(root->right);
+//}
+//int BinaryTreeLevelKSize(BinaryTree* root,int k)
+//{
+//	if (root == NULL)
+//	{
+//		return 0;
+//	}
+//	if (k == 1)
+//	{
+//		return 1;
+//	}
+//	return BinaryTreeLevelKSize(root->left, k - 1) + BinaryTreeLevelKSize(root->right, k - 1);
+//}
+//BinaryTree* BinaryTreeFine(BinaryTree* root, BTDataType x)
+//{
+//	if (root == NULL)
+//	{
+//		return NULL;
+//	}
+//	if (root->data == x)
+//	{
+//		return root;
+//	}
+//	BinaryTree* ret = BinaryTreeFine(root->left, x);
+//	if (ret)
+//	{
+//		return ret;
+//	}
+//	ret = BinaryTreeFine(root->right, x);
+//	if (ret)
+//	{
+//		return ret;
+//	}
+//	return NULL;
+//}
+//void BinaryTreePrevOrder(BinaryTree* root)
+//{
+//	if (root == NULL)
+//	{
+//		return;
+//	}
+//	printf("%c ", root->data);
+//	BinaryTreePrevOrder(root->left);
+//	BinaryTreePrevOrder(root->right);
+//}
+//void BinaryTreeInOrder(BinaryTree* root)
+//{
+//	if (root == NULL)
+//	{
+//		return;
+//	}
+//	BinaryTreeInOrder(root->left);
+//	printf("%c ", root->data);
+//	BinaryTreeInOrder(root->right);
+//}
+//void BinaryTreePostOrder(BinaryTree* root)
+//{
+//	if (root == NULL)
+//	{
+//		return;
+//	}
+//	BinaryTreePostOrder(root->left);
+//	BinaryTreePostOrder(root->right);
+//	printf("%c ", root->data);
+//}
+//void QueueInit(Queue* q)
+//{
+//	assert(q);
+//	q->front = q->back = NULL;
+//}
+//void QueuePush(Queue* q, QDataType data)
+//{
+//	assert(q);
+//	QueueNode* newNode = (QueueNode*)malloc(sizeof(QueueNode));
+//	newNode->data = data;
+//	newNode->next = NULL;
+//	if (q->back == NULL)
+//	{
+//		q->front=q->back = newNode;
+//	}
+//	else
+//	{
+//		q->back->next = newNode;
+//		q->back = newNode;
+//	}
+//}
+//void QueuePop(Queue* q)
+//{
+//	assert(q);
+//	if (q->front->next == NULL)
+//	{
+//		free(q->front);
+//		q->front = q->back = NULL;
+//	}
+//	else
+//	{
+//		QueueNode* next = q->front->next;
+//		free(q->front);
+//		q->front = next;
+//	}
+//}
+//QDataType QueueFront(Queue* q)
+//{
+//	assert(q);
+//	return q->front->data;
+//}
+//QDataType QueueBack(Queue* q)
+//{
+//	assert(q);
+//	return q->back->data;
+//}
+//int QueueSize(Queue* q)
+//{
+//	int n = 0;
+//	QueueNode* cur = q->front;
+//	while (cur != NULL)
+//	{
+//		n++;
+//		cur = cur->next;
+//	}
+//	return n;
+//}
+//int QueueEmpty(Queue* q)
+//{
+//	return q->front == NULL ? 1 : 0;
+//}
+//void QueueDestroy(Queue* q)
+//{
+//	QueueNode* cur = q->front;
+//	while (cur)
+//	{
+//		QueueNode* next = cur->next;
+//		free(cur);
+//		cur = next;
+//	}
+//	q->front = q->back = NULL;
+//}
+//void BinaryTreeLevelOrder(BinaryTree* root)
+//{
+//	Queue q;
+//	QueueInit(&q);
+//	if (root != NULL)
+//	{
+//		QueuePush(&q, root);
+//	}
+//	while (!QueueEmpty(&q))
+//	{
+//		BinaryTree* front = QueueFront(&q);
+//		QueuePop(&q);
+//		printf("%c ", front->data);
+//		if (front->left)
+//		{
+//			QueuePush(&q, front->left);
+//		}
+//		if (front->right)
+//		{
+//			QueuePush(&q, front->right);
+//		}
+//	}
+//	printf("\n");
+//	QueueDestroy(&q);
+//}
+//int BinaryTreeComplete(BinaryTree* root)
+//{
+//	Queue q;
+//	QueueInit(&q);
+//	if (root != NULL)
+//	{
+//		QueuePush(&q, root);
+//	}
+//	while (!QueueEmpty(&q))
+//	{
+//		BinaryTree* front = QueueFront(&q);
+//		QueuePop(&q);
+//		if (front == NULL)
+//		{
+//			break;
+//		}
+//		QueuePush(&q, front->left);
+//		QueuePush(&q, front->right);
+//	}
+//	while (!QueueEmpty(&q))
+//	{
+//		BinaryTree* front = QueueFront(&q);
+//		QueuePop(&q);
+//		if (front != NULL)
+//		{
+//			return 0;
+//		}
+//	}
+//	return 1;
+//}
 
 ////函数实现原地移除数组中值为val的数（要求时间复杂度为O(N)，空间复杂度为O(1)）：
 //int removeElement(int* nums, int numsSize, int val)
@@ -1820,3 +2057,261 @@
 //	}
 //	return isUnivalTree(root->left) && isUnivalTree(root->right);
 //}
+
+////函数实现求二叉树的最大深度（高度）：
+//#include<stdio.h>
+//typedef int BTDataType;
+//typedef struct BinaryTreeNode
+//{
+//	struct BinaryTreeNode* left;
+//	struct BinaryTreeNode* right;
+//	BTDataType data;
+//}BinaryTreeNode;
+//int maxDepth(BinaryTreeNode* root)
+//{
+//	if (root == NULL)
+//	{
+//		return 0;
+//	}
+//	int leftDepth = maxDepth(root->left);
+//	int rightDepth = maxDepth(root->right);
+//	return leftDepth > rightDepth ? leftDepth + 1 : rightDepth + 1;
+//}
+
+////函数实现翻转二叉树：
+//#include<stdio.h>
+//typedef int BTDataType;
+//typedef struct BinaryTreeNode
+//{
+//	struct BinaryTreeNode* left;
+//	struct BinaryTreeNode* right;
+//	BTDataType data;
+//}BinaryTreeNode;
+//BinaryTreeNode* invertTree(BinaryTreeNode* root)
+//{
+//	if (root == NULL)
+//	{
+//		return NULL;
+//	}
+//	BinaryTreeNode* tmp = root->left;
+//	root->right = root->left;
+//	root->left = tmp;
+//	invertTree(root->left);
+//	invertTree(root->right);
+//	return root;
+//}
+
+////函数实现检查两棵二叉树是否相同：
+//#include<stdio.h>
+//typedef int BTDataType;
+//typedef struct BinaryTreeNode
+//{
+//	struct BinaryTreeNode* left;
+//	struct BinaryTreeNode* right;
+//	BTDataType data;
+//}BinaryTreeNode;
+//bool isSameTree(BinaryTreeNode* p, BinaryTreeNode* q)
+//{
+//	if (p == NULL && q == NULL)
+//	{
+//		return true;
+//	}
+//	if (p == NULL || q == NULL)
+//	{
+//		return false;
+//	}
+//	if (p->data != q->data)
+//	{
+//		return false;
+//	}
+//	return isSameTree(p->left,q->left) && isSameTree(p->right,q->right);
+//}
+
+////函数实现检查二叉树是否是镜像对称：
+//#include<stdio.h>
+//typedef int BTDataType;
+//typedef struct BinaryTreeNode
+//{
+//	struct BinaryTreeNode* left;
+//	struct BinaryTreeNode* right;
+//	BTDataType data;
+//}BinaryTreeNode;
+//bool isSymmetricSameTree(BinaryTreeNode* p, BinaryTreeNode* q)
+//{
+//	if (p == NULL && q == NULL)
+//	{
+//		return true;
+//	}
+//	if (p == NULL || q == NULL)
+//	{
+//		return false;
+//	}
+//	if (p->data != q->data)
+//	{
+//		return false;
+//	}
+//	return isSameTree(p->left,q->right) && isSameTree(p->right,q->left);
+//}
+//bool isSymmetric(BinaryTreeNode* root)
+//{
+//	if (root = NULL)
+//	{
+//		return  true;
+//	}
+//	return isSameTree(root->left, root->right);
+//}
+
+////函数实现二叉树的前序遍历：
+//#include<stdio.h>
+//#include<stdlib.h>
+//typedef int BTDataType;
+//typedef struct BinaryTreeNode
+//{
+//	struct BinaryTreeNode* left;
+//	struct BinaryTreeNode* right;
+//	BTDataType data;
+//}BinaryTreeNode;
+//int TreeSize(BinaryTreeNode* root)
+//{
+//	if (root == NULL)
+//	{
+//		return 0;
+//	}
+//	return 1 + TreeSize(root->left) + TreeSize(root->right);
+//}
+//void _preorderTraversal(BinaryTreeNode* root,int* ret,int* pi)
+//{
+//	if (root == NULL)
+//	{
+//		return;
+//	}
+//	ret[(*pi)++] = root->data;
+//	_preorderTraversal(root->left,ret,pi);
+//	_preorderTraversal(root->right, ret, pi);
+//}
+//int* preorderTraversal(BinaryTreeNode* root, int* returnSize)
+//{
+//	int size = TreeSize(root);
+//	int* ret = (int*)malloc(sizeof(int)*size);
+//	*returnSize = size;
+//	int i = 0;
+//	_preorderTraversal(root, ret, &i);
+//	return ret;
+//}
+
+////函数实现判断是否是高度平衡二叉树（每个节点的左右子树高度差不超过1）：
+//#include<stdio.h>
+//#include<math.h>
+//typedef int BTDataType;
+//typedef struct BinaryTreeNode
+//{
+//	struct BinaryTreeNode* left;
+//	struct BinaryTreeNode* right;
+//	BTDataType data;
+//}BinaryTreeNode;
+//int Depth(BinaryTreeNode* root)
+//{
+//	if (root == NULL)
+//	{
+//		return 0;
+//	}
+//	int leftDepth = Depth(root->left);
+//	int rightDepth = Depth(root->right);
+//	return leftDepth > rightDepth ? leftDepth + 1 : rightDepth + 1;
+//}
+//bool isBalanced(BinaryTreeNode* root)
+//{
+//	if (root == NULL)
+//	{
+//		return true;
+//	}
+//	int leftDepth = Depth(root->left);
+//	int rightDepth = Depth(root->right);
+//	return abs(leftDepth - rightDepth) < 2
+//		&& isBalanced(root->left)
+//		&& isBalanced(root->right);
+//}
+
+////函数实现判断一棵树是否是另一棵树的子树：
+//#include<stdio.h>
+//typedef int BTDataType;
+//typedef struct BinaryTreeNode
+//{
+//	struct BinaryTreeNode* left;
+//	struct BinaryTreeNode* right;
+//	BTDataType data;
+//}BinaryTreeNode;
+//bool isSameTree(BinaryTreeNode* p, BinaryTreeNode* q)
+//{
+//	if (p == NULL && q == NULL)
+//	{
+//		return true;
+//	}
+//	if (p == NULL || q == NULL)
+//	{
+//		return false;
+//	}
+//	return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
+//}
+//bool isSubTree(BinaryTreeNode* s, BinaryTreeNode* t)
+//{
+//	if (s == NULL && t == NULL)
+//	{
+//		return true;
+//	}
+//	if (s == NULL && t!= NULL)
+//	{
+//		return false;
+//	}
+//	return isSameTree(s, t) || isSubTree(s->left, t) || isSubTree(s->right, t);
+//}
+
+////函数实现二叉树的构建与（中序）遍历（输入一串长度不超过100的字符串，#表示存入二叉树为空）：
+//#include<stdio.h>
+//#include<stdlib.h>
+//typedef char BTDataType;
+//typedef struct BinaryTreeNode
+//{
+//	struct BinaryTreeNode* left;
+//	struct BinaryTreeNode* right;
+//	BTDataType data;
+//}BinaryTreeNode;
+//BinaryTreeNode* Rebuild(char* arr,int* pi)
+//{
+//	if (arr[*pi] == '#')
+//	{
+//		return NULL;
+//	}
+//	else
+//	{
+//		BinaryTreeNode* root = (BinaryTreeNode*)malloc(sizeof(BinaryTreeNode));
+//		root->data = arr[*pi];
+//		++(*pi);
+//		root->left = Rebuild(arr, pi);
+//		++(*pi);
+//		root->right = Rebuild(arr, pi);
+//		return root;
+//	}
+//}
+//void Inorder(BinaryTreeNode* root)
+//{
+//	if (root == NULL)
+//	{
+//		return;
+//	}
+//	Inorder(root->left);
+//	printf("%c ", root->data);
+//	Inorder(root->right);
+//}
+//int main()
+//{
+//	char arr[100];
+//	scanf("%s", arr);
+//	int i = 0;
+//	BinaryTreeNode* root = Rebuild(arr,&i);
+//	Inorder(root);
+//	printf("\n");
+//	return 0;
+//}
+
+//

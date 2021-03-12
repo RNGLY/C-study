@@ -158,11 +158,48 @@
 ////二叉树头文件：
 //#pragma once
 //
-//typedef int BTDataType;
+//#include<stdio.h>
+//#include<stdlib.h>
+//#include<assert.h>
+//
+//typedef char BTDataType;
 //typedef struct BinaryTree
 //{
 //	struct BinaryTree* left;
 //	struct BinaryTree* right;
 //	BTDataType data;
 //}BinaryTree;
-
+//
+//BinaryTree* BinaryTreeCreate(BTDataType* arr, BTDataType n, int* pi);
+//void BinaryTreeDestory(BinaryTree* root);
+//int BinaryTreeSize(BinaryTree* root);
+//int BinaryTreeLeafSize(BinaryTree* root);
+//int BinaryTreeLevelKSize(BinaryTree* root, int k);
+//BinaryTree* BinaryTreeFine(BinaryTree* root, BTDataType x);
+//void BinaryTreePrevOrder(BinaryTree* root);
+//void BinaryTreeInOrder(BinaryTree* root);
+//void BinaryTreePostOrder(BinaryTree* root);
+//
+//typedef BinaryTree* QDataType;
+//typedef struct QueueNode
+//{
+//	QDataType data;
+//	struct QueueNode* next;
+//}QueueNode;
+//typedef struct Queue
+//{
+//	struct QueueNode* front;
+//	struct QueueNode* back;
+//}Queue;
+//
+//void QueueInit(Queue* q);
+//void QueuePush(Queue* q, QDataType data);
+//void QueuePop(Queue* q);
+//QDataType QueueFront(Queue* q);
+//QDataType QueueBack(Queue* q);
+//int QueueSize(Queue* q);
+//int QueueEmpty(Queue* q);
+//void QueueDestroy(Queue* q);
+//
+//void BinaryTreeLevelOrder(BinaryTree* root);
+//int BinaryTreeComplete(BinaryTree* root);
