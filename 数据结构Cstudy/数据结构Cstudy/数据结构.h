@@ -203,3 +203,23 @@
 //
 //void BinaryTreeLevelOrder(BinaryTree* root);
 //int BinaryTreeComplete(BinaryTree* root);
+
+////ÅÅÐòÍ·ÎÄ¼þ£º
+//#pragma once
+//
+//#include<stdio.h>
+//#include<stdlib.h>
+//#include<time.h>
+//#include<assert.h>
+//#include<string.h>
+//
+//void PrintArray(int* arr, int n);
+//void InsertSort(int* arr, int n);
+//void ShellSort(int* arr, int n);
+//void SelectSort(int* arr, int n);
+//void HeapSort(int* arr, int n);
+//void BubbleSort(int* arr, int n);
+//void QuickSort(int* arr, int begin, int end);
+//void QuickSortNoR(int* arr, int begin, int end);
+//void MergeSort(int* arr, int n);
+//void CountSort(int* arr, int n);

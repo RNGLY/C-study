@@ -871,6 +871,410 @@
 //	return 1;
 //}
 
+////排序常见方法：
+//void PrintArray(int* arr, int n)
+//{
+//	for (int i = 0; i < n; ++i)
+//	{
+//		printf("%d ", arr[i]);
+//	}
+//	printf("\n");
+//}
+//void InsertSort(int* arr, int n)
+//{
+//	for (int i = 0; i < n - 1; ++i)
+//	{
+//		int end=i;
+//		int tmp = arr[end + 1];
+//		while (end >= 0)
+//		{
+//			if (arr[end] > tmp)
+//			{
+//				arr[end + 1] = arr[end];
+//				--end;
+//			}
+//			else
+//			{
+//				break;
+//			}
+//		}
+//		arr[end + 1] = tmp;
+//	}
+//}
+//void ShellSort(int* arr, int n)
+//{
+//	int gap = n;
+//	while (gap > 1)
+//	{
+//		gap = gap / 3 + 1;
+//		for (int i = 0; i< n - gap; ++i)
+//		{
+//			int end = i;
+//			int tmp = arr[end + gap];
+//			while (end >= 0)
+//			{
+//				if (arr[end] > tmp)
+//				{
+//					arr[end + gap] = arr[end];
+//					end -= gap;
+//				}
+//				else
+//				{
+//					break;
+//				}
+//			}
+//			arr[end + gap] = tmp;
+//		}
+//	}
+//}
+//void Swap(int* p1,int* p2)
+//{
+//	int tmp = *p1;
+//	*p1 = *p2;
+//	*p2 = tmp;
+//}
+//void SelectSort(int* arr, int n)
+//{
+//	int begin = 0, end = n - 1;
+//	while (begin < end)
+//	{
+//		int mini = begin, maxi = end;
+//		for (int i = begin; i <= end; ++i)
+//		{
+//			if (arr[i] > arr[maxi])
+//			{
+//				maxi = i;
+//			}
+//			if (arr[i] < arr[mini])
+//			{
+//				mini = i;
+//			}
+//		}
+//		Swap(&arr[begin], &arr[mini]);
+//		if (begin == maxi)
+//		{
+//			maxi = mini;
+//		}
+//		Swap(&arr[end], &arr[maxi]);
+//		++begin;
+//		--end;
+//	}
+//}
+//void AdjustDown(int* arr,int n,int root)
+//{
+//	int parent = root;
+//	int child = parent * 2 + 1;
+//	while (child < n)
+//	{
+//		if (child + 1 < n && arr[child + 1] > arr[child])
+//		{
+//			++child;
+//		}
+//		if (arr[child] > arr[parent])
+//		{
+//			Swap(&arr[child], &arr[parent]);
+//			parent = child;
+//			child = parent * 2 + 1;
+//		}
+//		else
+//		{
+//			break;
+//		}
+//	}
+//}
+//void HeapSort(int* arr, int n)
+//{
+//	for (int i = (n - 1 - 1) / 2; i >= 0; --i)
+//	{
+//		AdjustDown(arr, n, i);
+//	}
+//	int end = n - 1;
+//	while (end > 0)
+//	{
+//		Swap(&arr[0], &arr[end]);
+//		AdjustDown(arr, end, 0);
+//		--end;
+//	}
+//}
+//void BubbleSort(int* arr, int n)
+//{
+//	for (int end = n - 1; end > 0; --end)
+//	{
+//		int flag = 0;
+//		for (int i = 0; i < end; ++i)
+//		{
+//			if (arr[i] > arr[i + 1])
+//			{
+//				Swap(&arr[i], &arr[i + 1]);
+//				flag = 1;
+//			}
+//		}
+//		if (flag == 0)
+//		{
+//			break;
+//		}
+//	}
+//}
+//int GetMiddleIndex(int* arr, int begin, int end)//三数取中法得到快排的key，可以防止出现最坏情况（key最大值或者最小值时，快排空间复杂度变成O(N*N)）
+//{
+//	int mid = (begin + end) >> 1;
+//	if (arr[begin] < arr[mid])
+//	{
+//		if (arr[mid] < arr[end])
+//		{
+//			return mid;
+//		}
+//		else if (arr[begin] < arr[end])
+//		{
+//			return end;
+//		}
+//		else
+//		{
+//			return begin;
+//		}
+//	}
+//	else
+//	{
+//		if (arr[mid] > arr[end])
+//		{
+//			return begin;
+//		}
+//		else if (arr[begin] < arr[end])
+//		{
+//			return begin;
+//		}
+//		else
+//		{
+//			return end;
+//		}
+//	}
+//}
+//int HoareSort(int* arr, int begin, int end)//快排左右指针法（hoare）
+//{
+//	int midIndex = GetMiddleIndex(arr, begin, end);
+//	Swap(&arr[midIndex], &arr[end]);
+//	int key = arr[end];
+//	int keyindex = end;
+//	while (begin < end)
+//	{
+//		while (begin < end && arr[begin] <= key)
+//		{
+//			++begin;
+//		}
+//		while (begin < end && arr[end] >= key)
+//		{
+//			--end;
+//		}
+//		Swap(&arr[begin], &arr[end]);
+//	}
+//	Swap(&arr[begin], &arr[keyindex]);
+//	return begin;
+//}
+//int DigHoleSort(int* arr, int begin, int end)//快排挖坑法（更容易理解begin和end谁先走）
+//{
+//	int midIndex = GetMiddleIndex(arr, begin, end);
+//	Swap(&arr[midIndex], &arr[end]);
+//	int key = arr[end];
+//	while (begin < end)
+//	{
+//		while (begin < end && arr[begin] <= key)
+//		{
+//			++begin;
+//		}
+//		arr[end] = arr[begin];
+//		while (begin < end && arr[end] >= key)
+//		{
+//			--end;
+//		}
+//		arr[begin] = arr[end];
+//	}
+//	arr[begin] = key;
+//	return begin;
+//}
+//int PrevCurSort(int* arr, int begin, int end)//快排前后指针法
+//{
+//	int midIndex = GetMiddleIndex(arr, begin, end);
+//	Swap(&arr[midIndex], &arr[end]);
+//	int key = arr[end];
+//	int prev = begin - 1;
+//	int cur = begin;
+//	while (cur < end)
+//	{
+//		if (arr[cur] < key && ++prev != cur)
+//		{
+//			Swap(&arr[prev], &arr[cur]);
+//		}
+//		++cur;
+//	}
+//	++prev;
+//	Swap(&arr[prev], &arr[end]);
+//	return prev;
+//}
+//void QuickSort(int* arr, int begin, int end)
+//{
+//	if (begin >= end)
+//	{
+//		return;
+//	}
+//	//int keyindex = HoareSort(arr, begin, end);
+//	int keyindex = DigHoleSort(arr, begin, end);
+//	//int keyindex = PrevCurSort(arr, begin, end);
+//	QuickSort(arr, begin, keyindex - 1);
+//	QuickSort(arr, keyindex + 1, end);
+//}
+//typedef int STDataType;
+//typedef struct Stack
+//{
+//	STDataType* a;
+//	int top;
+//	int capacity;
+//}Stack;
+//void StackInit(Stack* ps)
+//{
+//	ps->a = NULL;
+//	ps->top = 0;
+//	ps->capacity = 0;
+//}
+//void StackPush(Stack* ps, STDataType data)
+//{
+//	if (ps->top == ps->capacity)
+//	{
+//		size_t newcapacity = ps->capacity == 0 ? 4 : ps->capacity * 2;
+//		ps->a = (STDataType*)realloc(ps->a, newcapacity*sizeof(STDataType));
+//		ps->capacity = newcapacity;
+//	}
+//	ps->a[ps->top] = data;
+//	ps->top++;
+//}
+//void StackPop(Stack* ps)
+//{
+//	assert(ps && ps->top > 0);
+//	--ps->top;
+//}
+//STDataType StackTop(Stack* ps)
+//{
+//	assert(ps);
+//	return ps->a[ps->top - 1];
+//}
+//int StackSize(Stack* ps)
+//{
+//	assert(ps);
+//	return ps->top;
+//}
+//int StackEmpty(Stack* ps)
+//{
+//	assert(ps);
+//	return ps->top == 0 ? 1 : 0;//为空返回1，不为空返回0
+//}
+//void StackDestroy(Stack* ps)
+//{
+//	assert(ps);
+//	free(ps->a);
+//	ps->a = NULL;
+//	ps->top = ps->capacity = 0;
+//}
+//void QuickSortNoR(int* arr, int begin, int end)
+//{
+//	Stack st;
+//	StackInit(&st);
+//	StackPush(&st, begin);
+//	StackPush(&st, end);
+//	while (!StackEmpty(&st))
+//	{
+//		int right = StackTop(&st);
+//		StackPop(&st);
+//		int left = StackTop(&st);
+//		StackPop(&st);
+//		int keyindex = PrevCurSort(arr, left, right);
+//		if (left < keyindex-1)
+//		{
+//			StackPush(&st, left);
+//			StackPush(&st, keyindex-1);
+//		}
+//		if (keyindex+1 < right)
+//		{
+//			StackPush(&st, keyindex+1);
+//			StackPush(&st, right);
+//		}
+//	}
+//	StackDestroy(&st);
+//}
+//void _MergeSort(int* arr, int begin, int end, int* tmp)
+//{
+//	if (begin >= end)
+//	{
+//		return;
+//	}
+//	int mid = (begin + end) >> 1;
+//	_MergeSort(arr, begin, mid, tmp);
+//	_MergeSort(arr, mid + 1, end, tmp);
+//	int begin1 = begin, end1 = mid;
+//	int begin2 = mid + 1, end2 = end;
+//	int index = begin;
+//	while (begin1 <= end1 && begin2 <= end2)
+//	{
+//		if (arr[begin1] < arr[begin2])
+//		{
+//			tmp[index++] = arr[begin1++];
+//		}
+//		else
+//		{
+//			tmp[index++] = arr[begin2++];
+//		}
+//	}
+//	if (begin1 <= end1)
+//	{
+//		while (begin1 <= end1)
+//		{
+//			tmp[index++] = arr[begin1++];
+//		}
+//	}
+//	else
+//	{
+//		while (begin2 <= end2)
+//		{
+//			tmp[index++] = arr[begin2++];
+//		}
+//	}
+//	memcpy(arr + begin, tmp + begin,sizeof(int)*(end-begin+1));
+//}
+//void MergeSort(int* arr, int n)
+//{
+//	int* tmp = (int*)malloc(sizeof(int)*n);
+//	_MergeSort(arr, 0, n - 1, tmp);
+//	free(tmp);
+//}
+//void CountSort(int* arr, int n)
+//{
+//	int max = arr[0], min = arr[0];
+//	for (int i = 0; i < n; ++i)
+//	{
+//		if (arr[i] > max)
+//		{
+//			max = arr[i];
+//		}
+//		if (arr[i] < min)
+//		{
+//			min = arr[i];
+//		}
+//	}
+//	int range = max - min + 1;
+//	int* countArr = (int*)malloc(sizeof(int)*range);
+//	memset(countArr, 0, sizeof(int)*range);
+//	for (int i = 0; i < n; ++i)
+//	{
+//		countArr[arr[i] - min]++;
+//	}
+//	int j = 0;
+//	for (int i = 0; i < range; ++i)
+//	{
+//		while (countArr[i]--)
+//		{
+//			arr[j++] = i + min;
+//		}
+//	}
+//}
+
 ////函数实现原地移除数组中值为val的数（要求时间复杂度为O(N)，空间复杂度为O(1)）：
 //int removeElement(int* nums, int numsSize, int val)
 //{
@@ -2314,4 +2718,396 @@
 //	return 0;
 //}
 
-//
+////函数实现（升序）直接插入排序数组（时间复杂度O(N*N)，太慢）：
+//#include<stdio.h>
+//void InsertSort(int* arr, int n)
+//{
+//	for (int i = 0; i < n - 1; ++i)
+//	{
+//		int end = i;
+//		int tmp = arr[end + 1];
+//		while (end >= 0)
+//		{
+//			if (arr[end] > tmp)
+//			{
+//				arr[end + 1] = arr[end];
+//				--end;
+//			}
+//			else
+//			{
+//				break;
+//			}
+//		}
+//		arr[end + 1] = tmp;
+//	}
+//}
+//int* sortArray(int* nums, int numsSize, int* returnSize)
+//{
+//	InsertSort(nums, numsSize);
+//	*returnSize = numsSize;
+//	return nums;
+//}
+
+////函数实现（升序）希尔排序数组（时间复杂度O(N^1.3)）：
+//void ShellSort(int* arr, int n)
+//{
+//	int gap = n;
+//	while (gap > 1)
+//	{
+//		gap = gap / 3 + 1;
+//		for (int i = 0; i< n - gap; ++i)
+//		{
+//			int end = i;
+//			int tmp = arr[end + gap];
+//			while (end >= 0)
+//			{
+//				if (arr[end] > tmp)
+//				{
+//					arr[end + gap] = arr[end];
+//					end -= gap;
+//				}
+//				else
+//				{
+//					break;
+//				}
+//			}
+//			arr[end + gap] = tmp;
+//		}
+//	}
+//}
+//int* sortArray(int* nums, int numsSize, int* returnSize)
+//{
+//	ShellSort(nums, numsSize);
+//	*returnSize = numsSize;
+//	return nums;
+//}
+
+////函数实现（升序）直接选择排序数组（时间复杂度O(N*N)，太慢，并且数组有序也是最坏情况）：
+//void Swap(int* p1, int* p2)
+//{
+//	int tmp = *p1;
+//	*p1 = *p2;
+//	*p2 = tmp;
+//}
+//void SelectSort(int* arr, int n)
+//{
+//	int begin = 0, end = n - 1;
+//	while (begin < end)
+//	{
+//		int mini = begin, maxi = end;
+//		for (int i = begin; i <= end; ++i)
+//		{
+//			if (arr[i] > arr[maxi])
+//			{
+//				maxi = i;
+//			}
+//			if (arr[i] < arr[mini])
+//			{
+//				mini = i;
+//			}
+//		}
+//		Swap(&arr[begin], &arr[mini]);
+//		if (begin == maxi)
+//		{
+//			maxi = mini;
+//		}
+//		Swap(&arr[end], &arr[maxi]);
+//		++begin;
+//		--end;
+//	}
+//}
+//int* sortArray(int* nums, int numsSize, int* returnSize)
+//{
+//	SelectSort(nums, numsSize);
+//	*returnSize = numsSize;
+//	return nums;
+//}
+
+////函数实现（升序）堆排序数组（时间复杂度O(N*logN)）：
+//void Swap(int* p1, int* p2)
+//{
+//	int tmp = *p1;
+//	*p1 = *p2;
+//	*p2 = tmp;
+//}
+//void AdjustDown(int* arr, int n, int root)
+//{
+//	int parent = root;
+//	int child = parent * 2 + 1;
+//	while (child < n)
+//	{
+//		if (child + 1 < n && arr[child + 1] > arr[child])
+//		{
+//			++child;
+//		}
+//		if (arr[child] > arr[parent])
+//		{
+//			Swap(&arr[child], &arr[parent]);
+//			parent = child;
+//			child = parent * 2 + 1;
+//		}
+//		else
+//		{
+//			break;
+//		}
+//	}
+//}
+//void HeapSort(int* arr, int n)
+//{
+//	for (int i = (n - 1 - 1) / 2; i >= 0; --i)
+//	{
+//		AdjustDown(arr, n, i);
+//	}
+//	int end = n - 1;
+//	while (end > 0)
+//	{
+//		Swap(&arr[0], &arr[end]);
+//		AdjustDown(arr, end, 0);
+//		--end;
+//	}
+//}
+//int* sortArray(int* nums, int numsSize, int* returnSize)
+//{
+//	HeapSort(nums, numsSize);
+//	*returnSize = numsSize;
+//	return nums;
+//}
+
+////函数实现（升序）冒泡排序数组（时间复杂度O(N*N)，太慢）：
+//void Swap(int* p1, int* p2)
+//{
+//	int tmp = *p1;
+//	*p1 = *p2;
+//	*p2 = tmp;
+//}
+//void BubbleSort(int* arr, int n)
+//{
+//	for (int end = n - 1; end > 0; --end)
+//	{
+//		int flag = 0;
+//		for (int i = 0; i < end; ++i)
+//		{
+//			if (arr[i] > arr[i + 1])
+//			{
+//				Swap(&arr[i], &arr[i + 1]);
+//				flag = 1;
+//			}
+//		}
+//		if (flag == 0)
+//		{
+//			break;
+//		}
+//	}
+//}
+//int* sortArray(int* nums, int numsSize, int* returnSize)
+//{
+//	BubbleSort(nums, numsSize);
+//	*returnSize = numsSize;
+//	return nums;
+//}
+
+////函数实现（升序）快速排序数组（时间复杂度O(N*logN)）：
+//int GetMiddleIndex(int* arr, int begin, int end)
+//{
+//	int mid = (begin + end) >> 1;
+//	if (arr[begin] < arr[mid])
+//	{
+//		if (arr[mid] < arr[end])
+//		{
+//			return mid;
+//		}
+//		else if (arr[begin] < arr[end])
+//		{
+//			return end;
+//		}
+//		else
+//		{
+//			return begin;
+//		}
+//	}
+//	else
+//	{
+//		if (arr[mid] > arr[end])
+//		{
+//			return begin;
+//		}
+//		else if (arr[begin] < arr[end])
+//		{
+//			return begin;
+//		}
+//		else
+//		{
+//			return end;
+//		}
+//	}
+//}
+//int HoareSort(int* arr, int begin, int end)
+//{
+//	int midIndex = GetMiddleIndex(arr, begin, end);
+//	Swap(&arr[midIndex], &arr[end]);
+//	int key = arr[end];
+//	int keyindex = end;
+//	while (begin < end)
+//	{
+//		while (begin < end && arr[begin] <= key)
+//		{
+//			++begin;
+//		}
+//		while (begin < end && arr[end] >= key)
+//		{
+//			--end;
+//		}
+//		Swap(&arr[begin], &arr[end]);
+//	}
+//	Swap(&arr[begin], &arr[keyindex]);
+//	return begin;
+//}
+//int DigHoleSort(int* arr, int begin, int end)
+//{
+//	int midIndex = GetMiddleIndex(arr, begin, end);
+//	Swap(&arr[midIndex], &arr[end]);
+//	int key = arr[end];
+//	while (begin < end)
+//	{
+//		while (begin < end && arr[begin] <= key)
+//		{
+//			++begin;
+//		}
+//		arr[end] = arr[begin];
+//		while (begin < end && arr[end] >= key)
+//		{
+//			--end;
+//		}
+//		arr[begin] = arr[end];
+//	}
+//	arr[begin] = key;
+//	return begin;
+//}
+//int PrevCurSort(int* arr, int begin, int end)
+//{
+//	int midIndex = GetMiddleIndex(arr, begin, end);
+//	Swap(&arr[midIndex], &arr[end]);
+//	int key = arr[end];
+//	int prev = begin - 1;
+//	int cur = begin;
+//	while (cur < end)
+//	{
+//		if (arr[cur] < key && ++prev != cur)
+//		{
+//			Swap(&arr[prev], &arr[cur]);
+//		}
+//		++cur;
+//	}
+//	++prev;
+//	Swap(&arr[prev], &arr[end]);
+//	return prev;
+//}
+//void QuickSort(int* arr, int begin, int end)
+//{
+//	if (begin >= end)
+//	{
+//		return;
+//	}
+//	//int keyindex = HoareSort(arr, begin, end);
+//	int keyindex = DigHoleSort(arr, begin, end);
+//	//int keyindex = PrevCurSort(arr, begin, end);
+//	QuickSort(arr, begin, keyindex - 1);
+//	QuickSort(arr, keyindex + 1, end);
+//}
+//int* sortArray(int* nums, int numsSize, int* returnSize)
+//{
+//	QuickSort(nums, 0, numsSize - 1);
+//	*returnSize = numsSize;
+//	return nums;
+//}
+
+////函数实现（升序）归并排序数组（时间复杂度O(N*logN)）：
+//void _MergeSort(int* arr, int begin, int end, int* tmp)
+//{
+//	if (begin >= end)
+//	{
+//		return;
+//	}
+//	int mid = (begin + end) >> 1;
+//	_MergeSort(arr, begin, mid, tmp);
+//	_MergeSort(arr, mid + 1, end, tmp);
+//	int begin1 = begin, end1 = mid;
+//	int begin2 = mid + 1, end2 = end;
+//	int index = begin;
+//	while (begin1 <= end1 && begin2 < end2)
+//	{
+//		if (arr[begin1] < arr[begin2])
+//		{
+//			tmp[index++] = arr[begin1++];
+//		}
+//		else
+//		{
+//			tmp[index++] = arr[begin2++];
+//		}
+//	}
+//	if (begin1 <= end1)
+//	{
+//		while (begin1 <= end1)
+//		{
+//			tmp[index++] = arr[begin1++];
+//		}
+//	}
+//	else
+//	{
+//		while (begin2 <= end2)
+//		{
+//			tmp[index++] = arr[begin2++];
+//		}
+//	}
+//	memcpy(arr + begin, tmp + begin, sizeof(int)*(end - begin + 1));
+//}
+//void MergeSort(int* arr, int n)
+//{
+//	int* tmp = (int*)malloc(sizeof(int)*n);
+//	_MergeSort(arr, 0, n - 1, tmp);
+//	free(tmp);
+//}
+//int* sortArray(int* nums, int numsSize, int* returnSize)
+//{
+//	MergeSort(nums, 0, numsSize - 1);
+//	*returnSize = numsSize;
+//	return nums;
+//}
+
+////函数实现（升序）计数排序数组（时间复杂度O(Max(range,N)),空间复杂度O(range)）：
+//void CountSort(int* arr, int n)
+//{
+//	int max = arr[0], min = arr[0];
+//	for (int i = 0; i < n; ++i)
+//	{
+//		if (arr[i] > max)
+//		{
+//			max = arr[i];
+//		}
+//		if (arr[i] < min)
+//		{
+//			min = arr[i];
+//		}
+//	}
+//	int range = max - min + 1;
+//	int* countArr = (int*)malloc(sizeof(int)*range);
+//	memset(countArr, 0, sizeof(int)*range);
+//	for (int i = 0; i < n; ++i)
+//	{
+//		countArr[arr[i] - min]++;
+//	}
+//	int j = 0;
+//	for (int i = 0; i < range; ++i)
+//	{
+//		while (countArr[i]--)
+//		{
+//			arr[j++] = i + min;
+//		}
+//	}
+//}
+//int* sortArray(int* nums, int numsSize, int* returnSize)
+//{
+//	CountSort(nums, 0, numsSize - 1);
+//	*returnSize = numsSize;
+//	return nums;
+//}

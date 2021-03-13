@@ -234,3 +234,141 @@
 //{
 //	return 0;
 //}
+
+////排序常见方法测试：
+//void TestInsertSort()
+//{
+//	int arr[] = { 3, 6, 2, 5, 7, 9, 8, 6, 1, 4 };
+//	int size = sizeof(arr) / sizeof(int);
+//	InsertSort(arr, size);
+//	PrintArray(arr, size);
+//	return;
+//}
+//void TestShellSort()
+//{
+//	int arr[] = { 3, 6, 2, 5, 7, 9, 8, 6, 1, 4 };
+//	int size = sizeof(arr) / sizeof(int);
+//	ShellSort(arr, size);
+//	PrintArray(arr, size);
+//	return;
+//}
+//void TestSelectSort()
+//{
+//	int arr[] = { 3, 6, 2, 5, 7, 9, 8, 6, 1, 4 };
+//	int size = sizeof(arr) / sizeof(int);
+//	SelectSort(arr, size);
+//	PrintArray(arr, size);
+//	return;
+//}
+//void TestHeapSort()
+//{
+//	int arr[] = { 3, 6, 2, 5, 7, 9, 8, 6, 1, 4 };
+//	int size = sizeof(arr) / sizeof(int);
+//	HeapSort(arr, size);
+//	PrintArray(arr, size);
+//	return;
+//}
+//void TestBubbleSort()
+//{
+//	int arr[] = { 3, 6, 2, 5, 7, 9, 8, 6, 1, 4 };
+//	int size = sizeof(arr) / sizeof(int);
+//	BubbleSort(arr, size);
+//	PrintArray(arr, size);
+//	return;
+//}
+//void TestQuickSort()
+//{
+//	int arr[] = { 3, 6, 2, 5, 7, 9, 8, 6, 1, 4 };
+//	int size = sizeof(arr) / sizeof(int);
+//	QuickSort(arr, 0, size - 1);
+//	PrintArray(arr, size);
+//	return;
+//}
+//void TestQuickSortNoR()
+//{
+//	int arr[] = { 3, 6, 2, 5, 7, 9, 8, 6, 1, 4 };
+//	int size = sizeof(arr) / sizeof(int);
+//	QuickSortNoR(arr, 0, size - 1);
+//	PrintArray(arr, size);
+//	return;
+//}
+//void TestMergeSort()
+//{
+//	int arr[] = { 3, 6, 2, 5, 7, 9, 8, 6, 1, 4 };
+//	int size = sizeof(arr) / sizeof(int);
+//	MergeSort(arr, size);
+//	PrintArray(arr, size);
+//	return;
+//}
+//void TestCountSort()
+//{
+//	int arr[] = { 3, 6, 2, 5, 7, 9, 8, 6, 1, 4 };
+//	int size = sizeof(arr) / sizeof(int);
+//	CountSort(arr, size);
+//	PrintArray(arr, size);
+//	return;
+//}
+//void TestOP()
+//{
+//	srand((unsigned int)time(0));
+//	const int N = 100000;
+//	int* arr1 = (int*)malloc(sizeof(int)*N);
+//	int* arr2 = (int*)malloc(sizeof(int)*N);
+//	int* arr3 = (int*)malloc(sizeof(int)*N);
+//	int* arr4 = (int*)malloc(sizeof(int)*N);
+//	int* arr5 = (int*)malloc(sizeof(int)*N);
+//	int* arr6 = (int*)malloc(sizeof(int)*N);
+//	for (int i = 0; i < N; ++i)
+//	{
+//		arr1[i] = rand();
+//		arr2[i] = arr1[i];
+//		arr3[i] = arr1[i];
+//		arr4[i] = arr1[i];
+//		arr5[i] = arr1[i];
+//		arr6[i] = arr1[i];
+//	}
+//	int begin1 = clock();
+//	InsertSort(arr1, N);
+//	int end1 = clock();
+//	int begin2 = clock();
+//	ShellSort(arr2, N);
+//	int end2 = clock();
+//	int begin3 = clock();
+//	SelectSort(arr3, N);
+//	int end3 = clock();
+//	int begin4 = clock();
+//	HeapSort(arr4, N);
+//	int end4 = clock();
+//	int begin5 = clock();
+//	QuickSort(arr5, 0, N - 1);
+//	int end5 = clock();
+//	int begin6 = clock();
+//	MergeSort(arr1, N);
+//	int end6 = clock();
+//	printf("InsertSort:%d\n", end1 - begin1);
+//	printf("ShellSort:%d\n", end2 - begin2);
+//	printf("SelectSort:%d\n", end3 - begin3);
+//	printf("HeapSort:%d\n", end4 - begin4);
+//	printf("QuickSort:%d\n", end5 - begin5);
+//	printf("MergeSort:%d\n", end6 - begin6);
+//	free(arr1);
+//	free(arr2);
+//	free(arr3);
+//	free(arr4);
+//	free(arr5);
+//	free(arr6);
+//}
+//int main()
+//{
+//	//TestInsertSort();
+//	//TestShellSort();
+//	//TestSelectSort();
+//	//TestHeapSort();
+//	//TestBubbleSort();
+//	//TestQuickSort();
+//	//TestQuickSortNoR();
+//	//TestMergeSort();
+//	//TestCountSort();
+//	//TestOP();
+//	return 0;
+//}
